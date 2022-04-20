@@ -1,0 +1,14 @@
+.header{
+    padding: 0 3rem;
+    /* position: sticky; */
+}
+.header-links{
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 0.8rem;
+}
+.header-links .btn-login{
+  color: var(--black-color);
+}
