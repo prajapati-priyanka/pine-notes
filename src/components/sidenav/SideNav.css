@@ -1,0 +1,65 @@
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 270px;
+  height: 100%;
+  background-color: var(--cyan-bluish-gray);
+  padding: 1.4rem;
+}
+.side-nav .logo-content {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid var(--lynx-gray-color);
+  padding: 1rem 0 1.4rem 0.6rem;
+}
+.logo-content .hamburger-menu {
+  margin: 0.7rem 1rem 0rem 0.2rem;
+  outline: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.side-nav .nav-list {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+.side-nav .nav-list li {
+ 
+  height: 5rem;
+  width: 100%;
+  margin: 0.5rem;
+  font-weight: var(--semibold-font);
+  /* transition: all 0.4s ease; */
+  border-radius: 0.3rem;
+  font-size: 1.6rem;
+  /* background-color: red; */
+  padding: 1.4rem 0 0 1rem;
+}
+.side-nav .nav-list li:hover{
+background-color: var(--lynx-gray-color);
+border-left: 3px solid var(--secondary-color);
+
+}
+.side-nav .nav-list li a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.side-nav .nav-list .nav-list-icons{
+    font-size: 2rem;
+}
+/* compressed */
+
+.side-nav.compressed {
+    width: 60px;
+  }
+  
+  .side-nav.compressed .header-title ,
+  .side-nav.compressed .nav-list .links-name {
+    display: none;
+  }
+ 
+  
