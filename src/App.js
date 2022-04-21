@@ -1,14 +1,16 @@
 // import {Landing} from "./pages/landing/Landing";
 import "./App.css";
+import { Nav } from "./components/nav/Nav";
 // import { Login } from "./pages/authentication/login/Login";
-import { SignUp } from "./pages/authentication/signup/Signup";
+// import { SignUp } from "./pages/authentication/signup/Signup";
 
 function App() {
   return (
     <div className="App">
      {/* <Login /> */}
-     <SignUp />
+     {/* <SignUp /> */}
       {/* <Landing /> */}
+      <Nav />
       
      
     </div>
