@@ -82,7 +82,7 @@ const Main = () => {
             <div class="card-header">
               <div class="card-left">
                 <h5 class="card-title lg-text">Title</h5>
-                <p class="card-subtitle md-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, ad. Tempore perspiciatis rerum atque labore soluta, similique doloremque eaque, asperiores ipsa sit commodi aliquid minima, assumenda neque deserunt architecto error?</p>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, ad. Tempore perspiciatis rerum atque labore soluta, similique doloremque eaque, asperiores ipsa sit commodi aliquid minima, assumenda neque deserunt architecto error?</p>
               </div>
               <div class="card-right">
                 <button class="close-icon">
@@ -104,7 +104,7 @@ const Main = () => {
             <div class="card-header">
               <div class="card-left">
                 <h5 class="card-title lg-text">Title</h5>
-                <p class="card-subtitle md-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, ad. Tempore perspiciatis rerum atque labore soluta, similique doloremque eaque, asperiores ipsa sit commodi aliquid minima, assumenda neque deserunt architecto error?</p>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, ad. Tempore perspiciatis rerum atque labore soluta, similique doloremque eaque, asperiores ipsa sit commodi aliquid minima, assumenda neque deserunt architecto error?</p>
               </div>
               <div class="card-right">
                 <button class="close-icon">
@@ -126,7 +126,7 @@ const Main = () => {
             <div class="card-header">
               <div class="card-left">
                 <h5 class="card-title lg-text">Title</h5>
-                <p class="card-subtitle md-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, ad. Tempore perspiciatis rerum atque labore soluta, similique doloremque eaque, asperiores ipsa sit commodi aliquid minima, assumenda neque deserunt architecto error?</p>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, ad. Tempore perspiciatis rerum atque labore soluta, similique doloremque eaque, asperiores ipsa sit commodi aliquid minima, assumenda neque deserunt architecto error?</p>
               </div>
               <div class="card-right">
                 <button class="close-icon">
@@ -135,7 +135,7 @@ const Main = () => {
               </div>
             </div>
             <div className="note-footer">
-            <p class="note-date">Created on 02/04/2020</p>
+            <p class="note-date">Created on 02/04/2020 </p>
             <div className="note-action-btns">
                 <button className="action-btn"><BsTrash /></button>
                 <button className="action-btn"><MdOutlineModeEditOutline /></button>
@@ -156,7 +156,7 @@ const Main = () => {
             <div class="card-header">
               <div class="card-left">
                 <h5 class="card-title lg-text">Title</h5>
-                <p class="card-subtitle md-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, ad. Tempore perspiciatis rerum atque labore soluta, similique doloremque eaque, asperiores ipsa sit commodi aliquid minima, assumenda neque deserunt architecto error?</p>
+                <p class="card-text"> similique doloremque eaque, asperiores ipsa sit commodi aliquid minima, assumenda neque deserunt architecto error?</p>
               </div>
               <div class="card-right">
                 <button class="close-icon">
@@ -178,7 +178,7 @@ const Main = () => {
             <div class="card-header">
               <div class="card-left">
                 <h5 class="card-title lg-text">Title</h5>
-                <p class="card-subtitle md-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, ad. Tempore perspiciatis rerum atque labore soluta, similique doloremque eaque, asperiores ipsa sit commodi aliquid minima, assumenda neque deserunt architecto error?</p>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, ad. Tempore perspiciatis rerum atque labore soluta, similique doloremque eaque, asperiores ipsa sit commodi aliquid minima, assumenda neque deserunt architecto error?</p>
               </div>
               <div class="card-right">
                 <button class="close-icon">
@@ -200,7 +200,7 @@ const Main = () => {
             <div class="card-header">
               <div class="card-left">
                 <h5 class="card-title lg-text">Title</h5>
-                <p class="card-subtitle md-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, ad. Tempore perspiciatis rerum atque labore soluta, similique doloremque eaque, asperiores ipsa sit commodi aliquid minima, assumenda neque deserunt architecto error?</p>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, ad. Tempore perspiciatis rerum atque labore soluta, similique doloremque eaque, asperiores ipsa sit commodi aliquid minima, assumenda neque deserunt architecto error?</p>
               </div>
               <div class="card-right">
                 <button class="close-icon">
