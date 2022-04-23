@@ -8,13 +8,13 @@ import { IoMdLogOut } from "react-icons/io";
 import "./SideNav.css";
 
 const SideNav = () => {
-    const [sideNavCompressed, setSideNavCompressed] = useState(false);
+    const [sideNavShrinked, setSideNavShrinked] = useState(false);
   return (
     <nav className={`side-nav ${
-        sideNavCompressed ? "compressed" : ""
+        sideNavShrinked ? "shrinked" : ""
       }`}>
       <div className="logo-content">
-          <button className="hamburger-menu lg-text" onClick={()=>setSideNavCompressed(sideNavCompressed=> !sideNavCompressed)}>
+          <button className="hamburger-menu lg-text" onClick={()=>setSideNavShrinked(sideNavShrinked=> !sideNavShrinked)}>
           <GiHamburgerMenu />
           </button>
         
