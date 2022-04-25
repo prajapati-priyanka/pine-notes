@@ -46,7 +46,7 @@
   background-color: var(--lynx-gray-color);
   border-left: 4px solid var(--secondary-color);
 }
-.side-nav .nav-list li a {
+.side-nav .nav-list .side-nav-link {
   display: flex;
   align-items: center;
   gap: 1rem;
