@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { BsLightbulb } from "react-icons/bs";
-import { BsTrash } from "react-icons/bs";
-import { MdOutlineModeEditOutline } from "react-icons/md";
-import { MdOutlineArchive } from "react-icons/md";
+import { BsLightbulb, BsTrash } from "react-icons/bs";
+
+import { MdOutlineModeEditOutline, MdOutlineArchive } from "react-icons/md";
+
 import { IoMdLogOut } from "react-icons/io";
 import "./SideNav.css";
 import { EditLable } from "../modal/EditLabel";
