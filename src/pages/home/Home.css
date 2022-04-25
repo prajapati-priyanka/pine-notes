@@ -1,0 +1,66 @@
+.main-container {
+    display: flex;
+  }
+  .main-content {
+    width: calc(100vw - 270px);
+    min-height: 100vh;
+    margin: 0;
+  }
+  .search-filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem auto;
+    width: 40%;
+  }
+  
+  .search-filter-container .search-container {
+    padding: 0.5rem 1rem;
+    display: flex;
+    margin: 2rem auto;
+    width: 80%;
+  }
+  
+  .search-container .btn-search {
+    width: 10%;
+    padding: 10px;
+    border: none;
+    border-right: none;
+    cursor: pointer;
+    outline: none;
+    color: var(--gray-color);
+  }
+  .search-container input[type="search"] {
+    padding: 10px;
+    border-radius: 0;
+    margin: 0;
+    border-left: none;
+    width: 80%;
+    min-width: 15rem;
+  }
+  .add-note-section {
+    border-bottom: 2px solid var(--lynx-gray-color);
+    margin: 3rem 2rem;
+  }
+  
+  .all-notes-section {
+    margin: 3rem 2rem;
+    border-bottom: 2px solid var(--lynx-gray-color);
+  }
+  .all-notes-section .all-notes-heading {
+    margin-left: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: var(--semibold-font);
+    color: var(--secondary-color);
+  }
+  
+  .all-notes-container {
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 280px);
+    grid-gap: 1rem;
+  }
+  
+  
+  
+  
