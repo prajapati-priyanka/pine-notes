@@ -4,7 +4,7 @@
   left: 0;
   width: 280px;
   min-height: 100vh;
-  background-color: var(--cyan-bluish-gray);
+  background-color: var(--side-nav-color);
 }
 
 .side-nav .logo-content {
