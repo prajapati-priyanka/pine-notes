@@ -1,21 +1,19 @@
-// import {Landing} from "./pages/landing/Landing";
 import "./App.css";
-import { Main } from "./components/main/Main";
-// import { Nav } from "./components/nav/Nav";
-// import { SideNav } from "./components/sidenav/SideNav";
-// import { Login } from "./pages/authentication/login/Login";
-// import { SignUp } from "./pages/authentication/signup/Signup";
+import { Routes, Route } from "react-router-dom";
+import {Home, Landing, Login, Signup} from "./pages";
+import MockmanEs from "mockman-js";
+
 
 function App() {
   return (
     <div className="App">
-     {/* <Login /> */}
-     {/* <SignUp /> */}
-      {/* <Landing /> */}
-      {/* <Nav /> */}
-      {/* <SideNav /> */}
-      <Main />
-      
+     <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="home" element={<Home />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="mock" element={<MockmanEs />} />
+     </Routes>
      
     </div>
   );
