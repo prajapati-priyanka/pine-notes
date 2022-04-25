@@ -43,10 +43,8 @@ const SideNav = () => {
           </Link>
         </li>
         <li>
-          <Link to="/home">
-            <MdOutlineArchive className="nav-list-icons" title="Archive" />
-            <span className="links-name">Archive</span>
-          </Link>
+          <MdOutlineArchive className="nav-list-icons" title="Archive" />
+          <span className="links-name">Archive</span>
         </li>
         <li>
           <Link to="/home">
