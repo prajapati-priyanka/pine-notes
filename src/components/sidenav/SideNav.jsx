@@ -3,21 +3,27 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { BsLightbulb } from "react-icons/bs";
 import { BsTrash } from "react-icons/bs";
 import { MdOutlineModeEditOutline } from "react-icons/md";
-import { MdOutlineArchive} from "react-icons/md";
+import { MdOutlineArchive } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
 import "./SideNav.css";
+import { EditLable } from "../modal/EditLabel";
+import { Link } from "react-router-dom";
 
 const SideNav = () => {
-    const [sideNavShrinked, setSideNavShrinked] = useState(false);
+  const [labelModalVisible, setLabelModalVisible] = useState(false);
+  const [sideNavShrinked, setSideNavShrinked] = useState(false);
   return (
-    <nav className={`side-nav ${
-        sideNavShrinked ? "shrinked" : ""
-      }`}>
+    <nav className={`side-nav ${sideNavShrinked ? "shrinked" : ""}`}>
       <div className="logo-content">
-          <button className="hamburger-menu lg-text" onClick={()=>setSideNavShrinked(sideNavShrinked=> !sideNavShrinked)}>
+        <button
+          className="hamburger-menu lg-text"
+          onClick={() =>
+            setSideNavShrinked((sideNavShrinked) => !sideNavShrinked)
+          }
+        >
           <GiHamburgerMenu />
-          </button>
-        
+        </button>
+
         <h3 className="header-title">
           Pine <span style={{ color: "blue" }}>Notes</span>
         </h3>
@@ -25,39 +31,43 @@ const SideNav = () => {
 
       <ul className="nav-list">
         <li>
-          <a href="#">
-            <BsLightbulb className="nav-list-icons" title="Bulb"/>
+          <Link to="/home">
+            <BsLightbulb className="nav-list-icons" title="Bulb" />
             <span className="links-name">Notes</span>
-          </a>
+          </Link>
         </li>
-        <li>
-          <a href="#">
+        <li onClick={() => setLabelModalVisible(true)}>
+          <Link to="/home">
             <MdOutlineModeEditOutline className="nav-list-icons" title="Edit" />
             <span className="links-name">Edit Labels</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#">
+          <Link to="/home">
             <MdOutlineArchive className="nav-list-icons" title="Archive" />
             <span className="links-name">Archive</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#">
+          <Link to="/home">
             <BsTrash className="nav-list-icons" title="Trash" />
             <span className="links-name">Trash</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#">
+          <Link to="/home">
             <IoMdLogOut className="nav-list-icons" title="Logout" />
             <span className="links-name">Logout</span>
-          </a>
+          </Link>
         </li>
       </ul>
+      {labelModalVisible ? (
+        <EditLable
+          labelModalVisible={labelModalVisible}
+          setLabelModalVisible={setLabelModalVisible}
+        />
+      ) : null}
     </nav>
-
-   
   );
 };
 export { SideNav };
