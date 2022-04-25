@@ -4,7 +4,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import "../login/Login.css";
 import "./Signup.css";
 
-const SignUp = () => {
+const Signup = () => {
   return (
     <div>
       <main className="form-wrapper">
@@ -61,4 +61,4 @@ const SignUp = () => {
   );
 };
 
-export { SignUp };
+export { Signup };
