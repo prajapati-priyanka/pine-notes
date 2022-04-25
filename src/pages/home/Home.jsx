@@ -1,5 +1,5 @@
 import { FaSearch } from "react-icons/fa";
-import { SideNav, NoteCard, CreateNote,Filter } from "../../components/index";
+import { SideNav, NoteCard, CreateNote,Filter } from "../../components";
 import "./Home.css";
 
 const Home = () => {
