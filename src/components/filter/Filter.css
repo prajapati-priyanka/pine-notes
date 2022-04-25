@@ -1,0 +1,48 @@
+.notes-filter-wrapper {
+  position: relative;
+  /* z-index: 1; */
+}
+.filter-container {
+  font-size: 2.5rem;
+  color: var(--black-color);
+  
+}
+
+.notes-filter-wrapper .filter-menu {
+  position: fixed;
+  top: 12%;
+  left: 55%;
+  width: 35rem;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: var(--lynx-white-color);
+  
+ 
+}
+.product-filter-clear {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.8rem;
+}
+.reset {
+  color: var(--black-color);
+}
+.filter-type {
+  padding: 0.5rem 0;
+}
+
+.filter-type-container {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0.5rem 0;
+}
+
+.input-radio {
+  width: auto;
+}
+
+.filter-type-container label {
+  margin-left: 0.6rem;
+}
