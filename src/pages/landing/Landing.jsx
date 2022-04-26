@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/auth-context";
 import "./Landing.css";
 
 const Landing = () => {
+  
+  const {authState} = useAuth();
+  let {token} = authState;
+  token = localStorage.getItem("token");
+
+  console.log("In landing page", token)
   return (
     <div>
       <main className="main text-center">
@@ -18,11 +25,15 @@ const Landing = () => {
             <Link to="/signup">
               <button className="btn btn-primary md-text">Sign Up</button>
             </Link>
-            <Link to="/home">
+           {token ? (<Link to="/home">
               <button className="btn btn-outline-primary md-text">
                 Get Started
               </button>
-            </Link>
+            </Link>):(<Link to="/login">
+              <button className="btn btn-outline-primary md-text">
+                Get Started
+              </button>
+            </Link>)} 
           </div>
           <Link to="/login">
             <button className="btn-login md-text">
