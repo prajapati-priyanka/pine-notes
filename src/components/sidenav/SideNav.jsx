@@ -21,10 +21,12 @@ const SideNav = () => {
         >
           <GiHamburgerMenu />
         </button>
-
+        <Link to="/">
         <h3 className="header-title">
           Pine <span style={{ color: "blue" }}>Notes</span>
         </h3>
+        </Link>
+        
       </div>
 
       <ul className="nav-list">
