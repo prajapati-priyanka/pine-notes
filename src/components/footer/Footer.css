@@ -1,0 +1,16 @@
+.footer-content {
+    margin-top: auto;
+    padding: 1rem ;
+   
+}
+.footer-content .footer-text {
+    margin-top: 0.8rem;
+  }
+
+.footer-content .footer-links{
+ 
+    width: fit-content;
+    margin: auto;
+
+  
+  }
