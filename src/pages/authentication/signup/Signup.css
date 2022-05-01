@@ -17,6 +17,9 @@
   
   .form-login .form-signup label::after {
     content: "*";
-    color: var(--primary-color);
+    color: var(--red);
+  }
+  .passMatch-error{
+    color: var(--red);
   }
   

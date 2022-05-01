@@ -5,11 +5,24 @@ import { MdOutlineModeEditOutline, MdOutlineArchive } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
 import "./SideNav.css";
 import { EditLable } from "../modal/EditLabel";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth-context";
+import toast from "react-hot-toast";
 
 const SideNav = () => {
+  const { authDispatch } = useAuth();
+  const navigate = useNavigate();
   const [labelModalVisible, setLabelModalVisible] = useState(false);
   const [sideNavShrinked, setSideNavShrinked] = useState(false);
+
+  const logoutHandler = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    authDispatch({ type: "LOGOUT" });
+    toast("You have been successfully logged out", { icon: "✔️" });
+    navigate("/");
+  };
+
   return (
     <nav className={`side-nav ${sideNavShrinked ? "shrinked" : ""}`}>
       <div className="logo-content">
@@ -28,35 +41,28 @@ const SideNav = () => {
       </div>
 
       <ul className="nav-list">
-        <li>
-          <Link to="/home" className="side-nav-link">
-            <BsLightbulb className="nav-list-icons" title="Bulb" />
-            <span className="links-name">Notes</span>
-          </Link>
+        <li className="side-nav-link">
+          <BsLightbulb className="nav-list-icons" title="Bulb" />
+          <span className="links-name">Notes</span>
         </li>
-        <li onClick={() => setLabelModalVisible(true)}>
-          <Link to="/home" className="side-nav-link">
-            <MdOutlineModeEditOutline className="nav-list-icons" title="Edit" />
-            <span className="links-name">Edit Labels</span>
-          </Link>
+        <li
+          onClick={() => setLabelModalVisible(true)}
+          className="side-nav-link"
+        >
+          <MdOutlineModeEditOutline className="nav-list-icons" title="Edit" />
+          <span className="links-name">Edit Labels</span>
         </li>
-        <li>
-          <Link to="/home" className="side-nav-link">
-            <MdOutlineArchive className="nav-list-icons" title="Archive" />
-            <span className="links-name">Archive</span>
-          </Link>
+        <li className="side-nav-link">
+          <MdOutlineArchive className="nav-list-icons" title="Archive" />
+          <span className="links-name">Archive</span>
         </li>
-        <li>
-          <Link to="/home" className="side-nav-link">
-            <BsTrash className="nav-list-icons" title="Trash" />
-            <span className="links-name">Trash</span>
-          </Link>
+        <li className="side-nav-link">
+          <BsTrash className="nav-list-icons" title="Trash" />
+          <span className="links-name">Trash</span>
         </li>
-        <li>
-          <Link to="/home" className="side-nav-link">
-            <IoMdLogOut className="nav-list-icons" title="Logout" />
-            <span className="links-name">Logout</span>
-          </Link>
+        <li className="side-nav-link" onClick={logoutHandler}>
+          <IoMdLogOut className="nav-list-icons" title="Logout" />
+          <span className="links-name">Logout</span>
         </li>
       </ul>
       {labelModalVisible ? (

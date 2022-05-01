@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/auth-context";
 import "./Landing.css";
 
 const Landing = () => {
+  
+  const {authState} = useAuth();
+  let {token} = authState;
+  token = localStorage.getItem("token");
+
+  
   return (
     <div>
       <main className="main text-center">
@@ -15,20 +22,17 @@ const Landing = () => {
             tasks,and schedule all in one place.
           </p>
           <div className="user-links">
-            <Link to="/signup">
-              <button className="btn btn-primary md-text">Sign Up</button>
-            </Link>
-            <Link to="/home">
-              <button className="btn btn-outline-primary md-text">
+           {token ? (<Link to="/home">
+              <button className="btn btn-primary md-text">
                 Get Started
               </button>
-            </Link>
+            </Link>):(<Link to="/login">
+              <button className="btn btn-primary md-text">
+                Get Started
+              </button>
+            </Link>)} 
           </div>
-          <Link to="/login">
-            <button className="btn-login md-text">
-              Already have an account?
-            </button>
-          </Link>
+          
         </section>
         <figure className="main-hero">
           <img
