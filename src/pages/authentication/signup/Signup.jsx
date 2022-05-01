@@ -68,6 +68,7 @@ const Signup = () => {
               type="text"
               id="fname"
               placeholder="First Name"
+              required
               name="firstName"
               value={userData.firstName}
               onChange={(e) => onChangeHandler(e)}
@@ -77,6 +78,7 @@ const Signup = () => {
               type="text"
               id="lname"
               placeholder="Last Name"
+              required
               name="lastName"
               value={userData.lastName}
               onChange={(e) => onChangeHandler(e)}
@@ -86,6 +88,7 @@ const Signup = () => {
               type="email"
               id="email"
               placeholder="tanaypratap@neog.camp"
+              required
               name="email"
               value={userData.email}
               onChange={(e) => onChangeHandler(e)}
@@ -96,6 +99,7 @@ const Signup = () => {
                 type={showPassword ? "type" : "password"}
                 id="pass"
                 placeholder="*******"
+                required
                 name="password"
                 value={userData.password}
                 onChange={(e) => onChangeHandler(e)}
@@ -113,6 +117,7 @@ const Signup = () => {
                 type={showConfirmPassword ? "type" : "password"}
                 id="confirm-pass"
                 placeholder="*******"
+                required
                 name="confirmPass"
                 value={userData.confirmPass}
                 onChange={(e) => {
