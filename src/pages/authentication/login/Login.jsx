@@ -1,4 +1,5 @@
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+import {Link} from "react-router-dom"
 
 import "./Login.css";
 
@@ -23,10 +24,10 @@ const Login = () => {
           <button className="btn-guest md-text">Add Guest Credentials</button>
           <button className="btn btn-primary md-text">LOGIN</button>
           <p className="new-account text-center">
-            <a to="/signup">
+            <Link to="/signup">
               Create New Account
               <MdOutlineArrowForwardIos className="forward-icon" />
-            </a>
+            </Link>
           </p> 
         </form>
       </div>
