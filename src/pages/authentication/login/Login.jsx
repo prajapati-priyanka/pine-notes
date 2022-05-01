@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import axios from "axios";
-import {Link} from "react-router-dom"
 import "./Login.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../../context/auth-context";
