@@ -8,7 +8,7 @@ const Landing = () => {
   let {token} = authState;
   token = localStorage.getItem("token");
 
-  console.log("In landing page", token)
+  
   return (
     <div>
       <main className="main text-center">
@@ -22,11 +22,8 @@ const Landing = () => {
             tasks,and schedule all in one place.
           </p>
           <div className="user-links">
-            <Link to="/signup">
-              <button className="btn btn-primary md-text">Sign Up</button>
-            </Link>
            {token ? (<Link to="/home">
-              <button className="btn btn-outline-primary md-text">
+              <button className="btn btn-primary md-text">
                 Get Started
               </button>
             </Link>):(<Link to="/login">
@@ -35,11 +32,7 @@ const Landing = () => {
               </button>
             </Link>)} 
           </div>
-          <Link to="/login">
-            <button className="btn-login md-text">
-              Already have an account?
-            </button>
-          </Link>
+          
         </section>
         <figure className="main-hero">
           <img
