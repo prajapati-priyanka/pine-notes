@@ -27,7 +27,7 @@ const Landing = () => {
                 Get Started
               </button>
             </Link>):(<Link to="/login">
-              <button className="btn btn-outline-primary md-text">
+              <button className="btn btn-primary md-text">
                 Get Started
               </button>
             </Link>)} 
