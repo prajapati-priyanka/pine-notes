@@ -1,18 +1,22 @@
 import { BsPin, BsTrash } from "react-icons/bs";
 import { MdOutlineModeEditOutline, MdOutlineArchive } from "react-icons/md";
+
 import "./NoteCard.css";
 
-const NoteCard = () => {
+const NoteCard = ({notes}) => {
+
+console.log("In notesCard", notes)
+const {title, content} = notes;
+
+const date = new Date().toLocaleDateString();
+
   return (
     <div className="card notes-card card-with-dismiss">
       <div className="card-header">
         <div className="card-left">
-          <h5 className="card-title lg-text">Title</h5>
+          <h5 className="card-title lg-text">{title}</h5>
           <p className="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, ad.
-            Tempore perspiciatis rerum atque labore soluta, similique doloremque
-            eaque, asperiores ipsa sit commodi aliquid minima, assumenda neque
-            deserunt architecto error?
+          {content}
           </p>
         </div>
         <div className="card-right">
@@ -22,7 +26,7 @@ const NoteCard = () => {
         </div>
       </div>
       <div className="note-footer">
-        <p className="note-date">Created on 02/04/2020 </p>
+        <p className="note-date">Created on {date} </p>
         <div className="note-action-btns">
           <button className="action-btn">
             <BsTrash />
