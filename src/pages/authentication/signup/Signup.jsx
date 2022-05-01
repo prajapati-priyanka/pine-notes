@@ -6,6 +6,7 @@ import "../login/Login.css";
 import "./Signup.css";
 import { useAuth } from "../../../context/auth-context";
 import { useNavigate, Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Signup = () => {
   const { authDispatch } = useAuth();
@@ -46,6 +47,7 @@ const Signup = () => {
           type: "SIGN_UP",
           payload: { user: createdUser, token: token },
         });
+        toast("Your data has been saved!", { icon: "✔️" });
         navigate("/home");
       }
     } catch (err) {

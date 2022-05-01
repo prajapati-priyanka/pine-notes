@@ -2,6 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import {Home, Landing, Login, Signup} from "./pages";
 import MockmanEs from "mockman-js";
+import { Toaster } from "react-hot-toast";
 
 
 function App() {
@@ -14,6 +15,10 @@ function App() {
         <Route path="signup" element={<Signup />} />
         <Route path="mock" element={<MockmanEs />} />
      </Routes>
+     <Toaster
+        position="bottom-right"
+        toastOptions={{ className: "showToast", duration: 4000 }}
+      />
      
     </div>
   );

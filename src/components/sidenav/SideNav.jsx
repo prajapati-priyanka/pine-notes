@@ -6,7 +6,8 @@ import { IoMdLogOut } from "react-icons/io";
 import "./SideNav.css";
 import { EditLable } from "../modal/EditLabel";
 import { Link, useNavigate } from "react-router-dom";
-import {useAuth} from "../../context/auth-context"
+import {useAuth} from "../../context/auth-context";
+import toast from "react-hot-toast";
 
 const SideNav = () => {
   const { authDispatch } = useAuth();
@@ -19,6 +20,7 @@ const logoutHandler = ()=>{
   localStorage.removeItem("token");
   localStorage.removeItem("user");
   authDispatch({type:"LOGOUT"});
+  toast("You are Succesfully logged out", { icon: "✔️" });
   navigate("/");
 }
 
