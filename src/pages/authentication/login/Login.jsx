@@ -2,7 +2,7 @@ import {useState} from "react";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import axios from "axios";
 import "./Login.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../../context/auth-context";
 
 const Login = () => {
@@ -101,10 +101,10 @@ const navigate = useNavigate();
           <button className="btn-guest md-text" onClick={(e)=>clickHandler(e)}>Add Guest Credentials</button>
           <button className="btn btn-primary md-text">LOGIN</button>
           <p className="new-account text-center">
-            <a to="/signup">
+            <Link to="/signup">
               Create New Account
               <MdOutlineArrowForwardIos className="forward-icon" />
-            </a>
+            </Link>
           </p> 
         </form>
       </div>
