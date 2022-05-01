@@ -17,7 +17,7 @@ function App() {
      </Routes>
      <Toaster
         position="bottom-right"
-        toastOptions={{ className: "showToast", duration: 4000 }}
+        toastOptions={{ className: "showToast", duration: 3000 }}
       />
      
     </div>
