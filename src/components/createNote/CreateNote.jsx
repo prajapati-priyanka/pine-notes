@@ -3,39 +3,32 @@ import { useNote } from "../../context/notes-context";
 
 import "./CreateNote.css";
 const CreateNote = () => {
+  const { createNote } = useNote();
 
-  const {createNote} = useNote();
-  const [noteContent, setNoteContent] = useState({
+  const initialNotesData = {
     title: "",
     content: "",
-    label: "",
-    priority: "",
-    noteColor: "",
-  });
-
-  
-
-  const onChangeHandler = (e) => {
-    const { name, value } = e.target;
-       setNoteContent((prevData) => {
-      return {
-        ...prevData,
-        [name]: value,
-      };
-    });
+    color: "red",
+    tags: [],
+    priority: "low",
   };
 
-
+  const [noteContent, setNoteContent] = useState(initialNotesData);
 
   return (
-    <div className="add-note-container">
+    <div className="add-note-container card-shadow">
       <input
         type="text"
         className="note-title"
         placeholder="Enter title.."
         name="title"
         value={noteContent.title}
-        onChange={(e) => onChangeHandler(e)}
+        onChange={(e) =>
+          setNoteContent((prevContent) => ({
+            ...prevContent,
+            title: e.target.value,
+          }))
+        }
       />
       <textarea
         id="note-desc"
@@ -45,7 +38,12 @@ const CreateNote = () => {
         placeholder="Enter content.."
         name="content"
         value={noteContent.content}
-        onChange={(e) => onChangeHandler(e)}
+        onChange={(e) =>
+          setNoteContent((prevContent) => ({
+            ...prevContent,
+            content: e.target.value,
+          }))
+        }
       />
       <div className="add-note-footer">
         <div className="note-select">
@@ -56,13 +54,16 @@ const CreateNote = () => {
             id="note-label"
             className="select"
             name="label"
-            value={noteContent.label}
-            onChange={(e) => onChangeHandler(e)}
+            value={noteContent.value}
+            onChange={(e) =>
+              setNoteContent((prevContent) => ({
+                ...prevContent,
+                tags: [e.target.value],
+              }))
+            }
           >
-            <option value="">--Choose--</option>
-            <option value="Label 1">Label 1</option>
-            <option value="Label 2">Label 2</option>
-            <option value="Label 3">Label 3</option>
+            <option value="home">Home</option>
+            <option value="work">Work</option>
           </select>
           <label htmlFor="note-priority" className="label md-text">
             Priority:
@@ -72,12 +73,16 @@ const CreateNote = () => {
             className="select"
             name="priority"
             value={noteContent.priority}
-            onChange={(e) => onChangeHandler(e)}
+            onChange={(e) =>
+              setNoteContent((prevContent) => ({
+                ...prevContent,
+                priority: e.target.value,
+              }))
+            }
           >
-            <option value="">--Choose--</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
           </select>
           <label htmlFor="note-color" className="label md-text">
             Color:
@@ -86,19 +91,28 @@ const CreateNote = () => {
             id="note-color"
             className="select"
             name="noteColor"
-            value={noteContent.noteColor}
-            onChange={(e) => onChangeHandler(e)}
+            value={noteContent.color}
+            onChange={(e) =>
+              setNoteContent((prevContent) => ({
+                ...prevContent,
+                color: e.target.value,
+              }))
+            }
           >
-            <option value="">--Choose--</option>
             <option value="Red">Red</option>
             <option value="Blue">Blue</option>
             <option value="Green">Green</option>
           </select>
-          <button className="btn btn-primary create-note-btn" onClick={(e) => createNote(e,noteContent,setNoteContent)}>
+          
+          <button
+            className="btn btn-primary create-note-btn"
+            onClick={(e) => createNote(e, noteContent, setNoteContent)}
+          >
             Create Note
           </button>
         </div>
       </div>
+      
     </div>
   );
 };
