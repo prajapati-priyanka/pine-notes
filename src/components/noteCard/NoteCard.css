@@ -14,6 +14,9 @@
   position: static;
 }
 
+.card-right .close-icon{
+  cursor: pointer;
+}
 .notes-card .card-text {
   font-weight: var(--regular-font);
   color: var(--black-color);
