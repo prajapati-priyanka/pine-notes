@@ -4,7 +4,6 @@
     margin-bottom: 3rem;
     display: flex;
     flex-direction: column;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
     border-radius: 0.5rem;
     padding: 1rem;
   }
@@ -28,6 +27,7 @@
     align-items: center;
     flex-wrap: wrap;
   }
+
   .create-note-btn {
     margin-left: auto;
   }
