@@ -26,6 +26,7 @@
 }
 .note-select {
   display: flex;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -38,6 +39,6 @@
 }
 
 .color-pallete-icon {
-  margin-left: 4rem;
+  margin-left: 3rem;
   cursor: pointer;
 }

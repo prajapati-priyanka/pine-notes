@@ -14,7 +14,7 @@ const CreateNote = () => {
     content: "",
     color: colorList,
     tags: [],
-    priority: "low",
+    priority: "",
   };
 
   const [noteContent, setNoteContent] = useState(initialNotesData);
@@ -72,6 +72,7 @@ const CreateNote = () => {
                 }))
               }
             >
+              <option value=''>--Choose--</option>
               <option value="home">Home</option>
               <option value="work">Work</option>
             </select>
@@ -90,6 +91,7 @@ const CreateNote = () => {
                 }))
               }
             >
+              <option value=''>--Choose--</option>
               <option value="high">High</option>
               <option value="medium">Medium</option>
               <option value="low">Low</option>
