@@ -1,57 +1,41 @@
 import { useNote } from "../../context/notes-context";
 import { NoteCard, PinnedCard } from "../../components";
+import { useState } from "react";
 
+const Notes = () => {
+  const [pinnedNotes, setPinnedNotes] = useState([]);
 
+  const { notesState } = useNote();
+  const { notes } = notesState;
 
+  return (
+    <>
+      <section className="all-notes-section">
+        <h4 className="all-notes-heading">All Notes</h4>
 
-const Notes = ()=>{
+        <div className="all-notes-container">
+          {notes.map((note) => (
+            <NoteCard
+              key={note._id}
+              notes={note}
+              pinnedNotes={pinnedNotes}
+              setPinnedNotes={setPinnedNotes}
+            />
+          ))}
+        </div>
+      </section>
 
-const {notesState, pinnedNotes, setPinnedNotes} = useNote()
-    const {notes} = notesState;
+      <section className="all-notes-section">
+        <h4 className="all-notes-heading">Pinned Notes</h4>
 
-    
+        <div className="all-notes-container">
+          {pinnedNotes.map((note) => (
+            <PinnedCard key={note._id} notes={note} />
+          ))}
+        </div>
+      </section>
+    </>
+  );
+};
 
-   
-return(
-        <>
-
-
-            <section className="all-notes-section">
-            <h4 className="all-notes-heading">All Notes</h4>
-            {notes.length > 0 ? (
-            <div className="all-notes-container">
-             { notes.map((note)=>(
-               <NoteCard key={note._id} notes={note} pinnedNotes={pinnedNotes} setPinnedNotes={setPinnedNotes}/>
-    ))}
-              
-              
-             
-            </div>
-         
-  
-        ): null}
-
-</section>
-        
-
-<section className="all-notes-section">
-          <h4 className="all-notes-heading">Pinned Notes</h4>
-          {pinnedNotes.length > 0 ? (
-          <div className="all-notes-container">
-           { pinnedNotes.map((note)=>(
-             <PinnedCard key={note._id} notes={note} />
-  ))}
-            
-            
-           
-          </div>
-      
-
-        ) : null }
-  </section>
-     
-        </>
-    )
-}
-
-export {Notes}
+export { Notes };
