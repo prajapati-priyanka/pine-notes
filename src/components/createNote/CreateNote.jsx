@@ -25,7 +25,7 @@ const CreateNote = () => {
 
   return (
     <>
-      <form className="add-note-container">
+      <form className="add-note-container" style={{backgroundColor: noteContent.color}} >
         <input
           type="text"
           className="note-title"
@@ -38,6 +38,7 @@ const CreateNote = () => {
               title: e.target.value,
             }))
           }
+         
         />
         <textarea
           id="note-desc"
