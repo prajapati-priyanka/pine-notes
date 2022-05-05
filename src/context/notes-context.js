@@ -36,7 +36,7 @@ const NotesProvider = ({ children }) => {
           if (response.status === 201) {
             localStorage.setItem("notes", JSON.stringify(response.data.notes));
             notesDispatch({ type: "ADD_NOTE", payload: response.data.notes });
-            setNoteContent({ title: "", content: "" });
+            setNoteContent({ title: "", content: "",  priority:"" });
             setIsOpen(false);
           } else {
             throw new Error("Can't Process Request");
