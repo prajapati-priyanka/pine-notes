@@ -5,14 +5,14 @@ import { MdOutlineModeEditOutline, MdOutlineArchive } from "react-icons/md";
 import "../noteCard/NoteCard.css";
 
 const PinnedCard = ({notes}) => {
-    const {title, content,tags} = notes;
+    const {title, content,tags,color} = notes;
 
     const [label] = tags;
     
     const date = new Date().toLocaleDateString();
 
   return (
-    <div className="card notes-card card-with-dismiss">
+    <div className="card notes-card card-with-dismiss" style={{backgroundColor: color}}>
       <div className="card-header">
         <div className="card-left">
           <h5 className="card-title lg-text">{title}</h5>
