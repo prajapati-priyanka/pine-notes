@@ -1,119 +1,124 @@
 import { useState } from "react";
 import { useNote } from "../../context/notes-context";
+import { MdOutlineColorLens } from "react-icons/md";
 
 import "./CreateNote.css";
+import { ColorPallete } from "../colorPallete/ColorPallete";
 const CreateNote = () => {
-  const { createNote } = useNote();
+  const [colorList, setColorList] = useState("");
+
+  const { createNote, isOpen, setIsOpen } = useNote();
 
   const initialNotesData = {
     title: "",
     content: "",
-    color: "red",
+    color: colorList,
     tags: [],
     priority: "low",
   };
 
   const [noteContent, setNoteContent] = useState(initialNotesData);
 
+  const expandColorPallete = () => {
+    setIsOpen((isOpen) => !isOpen);
+  };
+
   return (
-    <div className="add-note-container card-shadow">
-      <input
-        type="text"
-        className="note-title"
-        placeholder="Enter title.."
-        name="title"
-        value={noteContent.title}
-        onChange={(e) =>
-          setNoteContent((prevContent) => ({
-            ...prevContent,
-            title: e.target.value,
-          }))
-        }
-      />
-      <textarea
-        id="note-desc"
-        cols="10"
-        rows="10"
-        className="note-content"
-        placeholder="Enter content.."
-        name="content"
-        value={noteContent.content}
-        onChange={(e) =>
-          setNoteContent((prevContent) => ({
-            ...prevContent,
-            content: e.target.value,
-          }))
-        }
-      />
-      <div className="add-note-footer">
-        <div className="note-select">
-          <label htmlFor="note-label" className="label md-text">
-            Label:
-          </label>
-          <select
-            id="note-label"
-            className="select"
-            name="label"
-            value={noteContent.value}
-            onChange={(e) =>
-              setNoteContent((prevContent) => ({
-                ...prevContent,
-                tags: [e.target.value],
-              }))
-            }
-          >
-            <option value="home">Home</option>
-            <option value="work">Work</option>
-          </select>
-          <label htmlFor="note-priority" className="label md-text">
-            Priority:
-          </label>
-          <select
-            id="note-priority"
-            className="select"
-            name="priority"
-            value={noteContent.priority}
-            onChange={(e) =>
-              setNoteContent((prevContent) => ({
-                ...prevContent,
-                priority: e.target.value,
-              }))
-            }
-          >
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
-          </select>
-          <label htmlFor="note-color" className="label md-text">
-            Color:
-          </label>
-          <select
-            id="note-color"
-            className="select"
-            name="noteColor"
-            value={noteContent.color}
-            onChange={(e) =>
-              setNoteContent((prevContent) => ({
-                ...prevContent,
-                color: e.target.value,
-              }))
-            }
-          >
-            <option value="Red">Red</option>
-            <option value="Blue">Blue</option>
-            <option value="Green">Green</option>
-          </select>
-          
-          <button
-            className="btn btn-primary create-note-btn"
-            onClick={(e) => createNote(e, noteContent, setNoteContent)}
-          >
-            Create Note
-          </button>
+    <>
+      <form className="add-note-container">
+        <input
+          type="text"
+          className="note-title"
+          placeholder="Enter title.."
+          name="title"
+          value={noteContent.title}
+          onChange={(e) =>
+            setNoteContent((prevContent) => ({
+              ...prevContent,
+              title: e.target.value,
+            }))
+          }
+        />
+        <textarea
+          id="note-desc"
+          cols="10"
+          rows="10"
+          className="note-content"
+          placeholder="Enter content.."
+          name="content"
+          value={noteContent.content}
+          onChange={(e) =>
+            setNoteContent((prevContent) => ({
+              ...prevContent,
+              content: e.target.value,
+            }))
+          }
+        />
+        <div className="add-note-footer">
+          <div className="note-select">
+            <label htmlFor="note-label" className="label md-text">
+              Label:
+            </label>
+            <select
+              id="note-label"
+              className="select"
+              name="label"
+              value={noteContent.value}
+              onChange={(e) =>
+                setNoteContent((prevContent) => ({
+                  ...prevContent,
+                  tags: [e.target.value],
+                }))
+              }
+            >
+              <option value="home">Home</option>
+              <option value="work">Work</option>
+            </select>
+            <label htmlFor="note-priority" className="label md-text">
+              Priority:
+            </label>
+            <select
+              id="note-priority"
+              className="select"
+              name="priority"
+              value={noteContent.priority}
+              onChange={(e) =>
+                setNoteContent((prevContent) => ({
+                  ...prevContent,
+                  priority: e.target.value,
+                }))
+              }
+            >
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+            <div>
+              <MdOutlineColorLens
+                onClick={expandColorPallete}
+                className="color-pallete-icon lg-text"
+              />
+            </div>
+            <button
+              className="btn btn-primary create-note-btn"
+              onClick={(e) =>
+                createNote(e, noteContent, setNoteContent, setIsOpen)
+              }
+            >
+              Create Note
+            </button>
+          </div>
         </div>
-      </div>
-      
-    </div>
+      </form>
+      {isOpen && (
+        <ColorPallete
+          colorList={noteContent.color}
+          setColorList={setColorList}
+          setNoteContent={setNoteContent}
+          noteContent={noteContent}
+        />
+      )}
+    </>
   );
 };
 
