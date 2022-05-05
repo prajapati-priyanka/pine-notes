@@ -36,7 +36,6 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes}) => {
 
  
   return (
-    <div className="card notes-card card-with-dismiss">
     <div className="card notes-card card-with-dismiss" style={{backgroundColor: color}}>
       <div className="card-header">
         <div className="card-left">
