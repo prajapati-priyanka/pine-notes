@@ -16,11 +16,13 @@ useEffect(()=>{
   if(pathname === "/home"){
     navigate("/home/notes")
   }
-},[])
+  
+},[pathname,navigate])
 
   useEffect(()=>{
     getNotesData();
-  },[]);
+   
+  },[getNotesData]);
 
   const getPageTitle = (pathname)=>{
     switch (pathname) {
