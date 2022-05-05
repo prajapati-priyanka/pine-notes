@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 const NoteCard = ({ notes, pinnedNotes, setPinnedNotes}) => {
   const [isPinned, setIsPinned] = useState(false);
-  const { title, content, tags,color } = notes;
+  const { title, content, tags,color,priority } = notes;
 
   const [label] = tags;
 
@@ -58,7 +58,11 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes}) => {
           </button>
         </div>
       </div>
-      <div>{label}</div>
+      <div className="notes-label-priority md-text">
+        <div className="notes-features">{label}</div>
+        <div className="notes-features">{priority}</div>
+        
+        </div>
       <div className="note-footer">
         <p className="note-date">Created on {date} </p>
         <div className="note-action-btns">

@@ -56,3 +56,16 @@
 .notes-card:hover .note-action-btns {
   display: block;
 }
+.notes-label-priority{
+display: flex;
+gap: 1rem;
+margin-top: auto;
+
+}
+.notes-features{
+
+background-color: var(--warning-color);
+width: fit-content;
+padding: 0 0.8rem;
+border-radius: 0.5rem;
+}

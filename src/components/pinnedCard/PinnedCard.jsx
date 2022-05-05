@@ -5,7 +5,7 @@ import { MdOutlineModeEditOutline, MdOutlineArchive } from "react-icons/md";
 import "../noteCard/NoteCard.css";
 
 const PinnedCard = ({notes}) => {
-    const {title, content,tags,color} = notes;
+    const {title, content,tags,color,priority} = notes;
 
     const [label] = tags;
     
@@ -26,7 +26,11 @@ const PinnedCard = ({notes}) => {
           </button> 
         </div>
       </div>
-      <div>{label}</div>
+      <div className="notes-label-priority md-text">
+        <div className="notes-features">{label}</div>
+        <div className="notes-features">{priority}</div>
+        
+        </div>
       <div className="note-footer">
         <p className="note-date">Created on {date} </p>
         <div className="note-action-btns">
