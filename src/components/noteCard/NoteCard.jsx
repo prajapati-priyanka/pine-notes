@@ -5,10 +5,10 @@ import { useState } from "react";
 import "./NoteCard.css";
 import toast from "react-hot-toast";
 
-const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
-  const [isPinned, setIsPinned] = useState(false);
 
-  const { title, content, tags } = notes;
+const NoteCard = ({ notes, pinnedNotes, setPinnedNotes}) => {
+  const [isPinned, setIsPinned] = useState(false);
+  const { title, content, tags,color } = notes;
 
   const [label] = tags;
 
@@ -34,8 +34,10 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
     toast("Note Unpinned");
   };
 
+ 
   return (
     <div className="card notes-card card-with-dismiss">
+    <div className="card notes-card card-with-dismiss" style={{backgroundColor: color}}>
       <div className="card-header">
         <div className="card-left">
           <h5 className="card-title lg-text">{title}</h5>
