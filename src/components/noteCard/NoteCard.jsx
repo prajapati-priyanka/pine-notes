@@ -1,28 +1,70 @@
-import { BsPin, BsTrash } from "react-icons/bs";
+import { BsPin, BsPinFill, BsTrash } from "react-icons/bs";
 import { MdOutlineModeEditOutline, MdOutlineArchive } from "react-icons/md";
-import "./NoteCard.css";
+import { useState } from "react";
 
-const NoteCard = () => {
+import "./NoteCard.css";
+import toast from "react-hot-toast";
+
+
+const NoteCard = ({ notes, pinnedNotes, setPinnedNotes}) => {
+  const [isPinned, setIsPinned] = useState(false);
+  const { title, content, tags,color,priority } = notes;
+
+  const [label] = tags;
+
+  const date = new Date().toLocaleDateString();
+
+  const addPinnedNotes = (note) => {
+    const newNote = pinnedNotes.find((item) => item._id === note._id);
+
+    if (newNote === undefined) {
+      setIsPinned(!isPinned);
+      setPinnedNotes((prevData) => [...prevData, note]);
+      toast("Note Pinned");
+    }
+  };
+
+  const removePinnedNotes = (note) => {
+    const newPinnedNote = pinnedNotes.filter(
+      (pinnedNote) => pinnedNote._id !== note._id
+    );
+
+    setPinnedNotes(newPinnedNote);
+    setIsPinned(!isPinned);
+    toast("Note Unpinned");
+  };
+
+ 
   return (
-    <div className="card notes-card card-with-dismiss">
+    <div className="card notes-card card-with-dismiss" style={{backgroundColor: color}}>
       <div className="card-header">
         <div className="card-left">
-          <h5 className="card-title lg-text">Title</h5>
-          <p className="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, ad.
-            Tempore perspiciatis rerum atque labore soluta, similique doloremque
-            eaque, asperiores ipsa sit commodi aliquid minima, assumenda neque
-            deserunt architecto error?
-          </p>
+          <h5 className="card-title lg-text">{title}</h5>
+          <p className="card-text">{content}</p>
         </div>
         <div className="card-right">
           <button className="close-icon">
-            <BsPin />
+            {isPinned ? (
+              <BsPinFill
+                title="Pinned Notes"
+                onClick={() => removePinnedNotes(notes)}
+              />
+            ) : (
+              <BsPin
+                title="UnPinned Notes"
+                onClick={() => addPinnedNotes(notes)}
+              />
+            )}
           </button>
         </div>
       </div>
+      <div className="notes-label-priority md-text">
+        <div className="notes-features">{label}</div>
+        <div className="notes-features">{priority}</div>
+        
+        </div>
       <div className="note-footer">
-        <p className="note-date">Created on 02/04/2020 </p>
+        <p className="note-date">Created on {date} </p>
         <div className="note-action-btns">
           <button className="action-btn">
             <BsTrash />

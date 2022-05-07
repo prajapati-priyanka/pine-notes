@@ -5,7 +5,8 @@
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 20rem;
+  
   margin-right: 1rem;
   
 }
@@ -13,6 +14,9 @@
   position: static;
 }
 
+.card-right .close-icon{
+  cursor: pointer;
+}
 .notes-card .card-text {
   font-weight: var(--regular-font);
   color: var(--black-color);
@@ -51,4 +55,17 @@
 
 .notes-card:hover .note-action-btns {
   display: block;
+}
+.notes-label-priority{
+display: flex;
+gap: 1rem;
+margin-top: auto;
+
+}
+.notes-features{
+
+background-color: var(--warning-color);
+width: fit-content;
+padding: 0 0.8rem;
+border-radius: 0.5rem;
 }

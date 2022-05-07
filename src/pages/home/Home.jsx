@@ -1,8 +1,43 @@
 import { FaSearch } from "react-icons/fa";
-import { SideNav, NoteCard, CreateNote,Filter } from "../../components";
+import { SideNav, CreateNote, Filter } from "../../components";
 import "./Home.css";
 
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useNote } from "../../context/notes-context";
+import { useEffect } from "react";
+
 const Home = () => {
+
+  const {pathname} = useLocation();
+  const navigate = useNavigate();
+  const {getNotesData} = useNote();
+
+useEffect(()=>{
+  if(pathname === "/home"){
+    navigate("/home/notes")
+  }
+  
+},[pathname,navigate])
+
+  useEffect(()=>{
+    getNotesData();
+   
+  },[getNotesData]);
+
+  const getPageTitle = (pathname)=>{
+    switch (pathname) {
+      case "/home/notes":
+        return "Notes"
+      case "/home/trash":
+        return "Trash"
+      case "/home/archieve":
+        return "Archieve"
+      default:
+        return "Notes"
+    }
+  }
+  
+
   return (
     <div className="main-container">
       <SideNav />
@@ -18,29 +53,17 @@ const Home = () => {
               className="input-search"
             />
           </div>
-         <Filter />
+          <Filter />
         </section>
 
         <section className="add-note-section">
-         <CreateNote />
+          <CreateNote />
+        </section>
+        <section className="notes-header">
+          <h2 className="notes-heading">{getPageTitle(pathname)}</h2>
         </section>
 
-        <section className="all-notes-section">
-          <h4 className="all-notes-heading">All Notes</h4>
-          <div className="all-notes-container">
-            <NoteCard />
-            <NoteCard />
-            <NoteCard />
-          </div>
-        </section>
-        <section className="all-notes-section">
-          <h4 className="all-notes-heading">Pinned Notes</h4>
-          <div className="all-notes-container">
-            <NoteCard />
-            <NoteCard />
-            <NoteCard />
-          </div>
-        </section>
+        <Outlet />
       </main>
     </div>
   );
