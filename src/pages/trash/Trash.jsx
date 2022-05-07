@@ -1,11 +1,37 @@
-import { SideNav } from "../../components";
+import { useEffect } from "react";
+import { SideNav, NoteCard } from "../../components";
+import { useTrash } from "../../context/trash-context";
 import "./Trash.css"
 
 const Trash = () => {
+  const {trashState: {trash}, getTrashData} = useTrash();
+ 
+useEffect(()=>{
+  getTrashData();
+},[getTrashData])
+
   return (
     <div className="main-container">
       <SideNav />
-      <div className="empty-trash-container">
+      {
+        trash.length > 0 ?(
+
+          <section className="all-notes-section">
+        <h4 className="all-notes-heading">All Notes</h4>
+
+        <div className="all-notes-container">
+          {trash.map((note) => (
+            <NoteCard
+              key={note._id}
+              notes={note}
+              // pinnedNotes={pinnedNotes}
+              // setPinnedNotes={setPinnedNotes}
+            />
+          ))}
+        </div>
+      </section>
+
+        ): ( <div className="empty-trash-container">
           <div className="empty-trash-content text-center">
           <figure>
           <img src="./assets/trash.png" className="empty-trash-img img-responsive" alt="empty-bin" />
@@ -14,6 +40,10 @@ const Trash = () => {
           </div>
       
       </div>
+        )
+
+      }
+     
     </div>
   );
 };
