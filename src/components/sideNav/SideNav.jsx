@@ -5,7 +5,7 @@ import { MdOutlineModeEditOutline, MdOutlineArchive } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
 import "./SideNav.css";
 import { EditLable } from "../modal/editLabel/EditLabel";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import toast from "react-hot-toast";
 
@@ -56,10 +56,13 @@ const SideNav = () => {
           <MdOutlineArchive className="nav-list-icons" title="Archive" />
           <span className="links-name">Archive</span>
         </li>
+        <Link to="/trash">
         <li className="side-nav-link">
           <BsTrash className="nav-list-icons" title="Trash" />
           <span className="links-name">Trash</span>
         </li>
+        </Link>
+       
         <li className="side-nav-link" onClick={logoutHandler}>
           <IoMdLogOut className="nav-list-icons" title="Logout" />
           <span className="links-name">Logout</span>
