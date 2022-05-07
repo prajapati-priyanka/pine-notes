@@ -1,42 +1,19 @@
 import { FaSearch } from "react-icons/fa";
-import { SideNav, CreateNote, Filter } from "../../components";
+import { SideNav, CreateNoteModal, Filter } from "../../components";
+import { useState } from "react";
 import "./Home.css";
-
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useNote } from "../../context/notes-context";
 import { useEffect } from "react";
+import { Notes } from "../notes/Notes";
 
 const Home = () => {
+  const [createNoteModalVisible, setCreateNoteModalVisible] = useState(false);
 
-  const {pathname} = useLocation();
-  const navigate = useNavigate();
-  const {getNotesData} = useNote();
+  const { getNotesData } = useNote();
 
-useEffect(()=>{
-  if(pathname === "/home"){
-    navigate("/home/notes")
-  }
-  
-},[pathname,navigate])
-
-  useEffect(()=>{
+  useEffect(() => {
     getNotesData();
-   
-  },[getNotesData]);
-
-  const getPageTitle = (pathname)=>{
-    switch (pathname) {
-      case "/home/notes":
-        return "Notes"
-      case "/home/trash":
-        return "Trash"
-      case "/home/archieve":
-        return "Archieve"
-      default:
-        return "Notes"
-    }
-  }
-  
+  }, [getNotesData]);
 
   return (
     <div className="main-container">
@@ -55,16 +32,30 @@ useEffect(()=>{
           </div>
           <Filter />
         </section>
-
         <section className="add-note-section">
-          <CreateNote />
-        </section>
-        <section className="notes-header">
-          <h2 className="notes-heading">{getPageTitle(pathname)}</h2>
+          <button
+            className="btn btn-primary"
+            onClick={() => setCreateNoteModalVisible(true)}
+          >
+            Create Note
+          </button>
         </section>
 
-        <Outlet />
+        <section className="notes-header">
+          <h2 className="notes-heading">Notes</h2>
+        </section>
+
+        <Notes />
       </main>
+
+      {createNoteModalVisible ? (
+        <section className="add-note-section">
+          <CreateNoteModal
+            setCreateNoteModalVisible={setCreateNoteModalVisible}
+            createNoteModalVisible={createNoteModalVisible}
+          />
+        </section>
+      ) : null}
     </div>
   );
 };
