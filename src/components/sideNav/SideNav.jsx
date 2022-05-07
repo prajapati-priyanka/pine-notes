@@ -4,7 +4,7 @@ import { BsLightbulb, BsTrash } from "react-icons/bs";
 import { MdOutlineModeEditOutline, MdOutlineArchive } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
 import "./SideNav.css";
-import { EditLable } from "../modal/EditLabel";
+import { EditLable } from "../modal/editLabel/EditLabel";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import toast from "react-hot-toast";
