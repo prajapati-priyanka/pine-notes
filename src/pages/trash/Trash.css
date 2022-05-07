@@ -1,0 +1,21 @@
+.empty-trash-container {
+  width: calc(100vw - 270px);
+  min-height: 100vh;
+  margin: 0;
+}
+
+.empty-trash-content {
+  margin: 0 auto;
+   height: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.empty-trash-content .empty-trash-img{
+    border: none;
+}
+.empty-trash-content .empty-trash-desc{
+    padding: 1.6rem 0;
+}
