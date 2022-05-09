@@ -20,6 +20,10 @@
   background-color: transparent;
   cursor: pointer;
 }
+.logo-content .header-title span{
+  color: var(--primary-color);
+  font-family: cursive;
+}
 
 .side-nav .nav-list {
   margin-top: 3rem;

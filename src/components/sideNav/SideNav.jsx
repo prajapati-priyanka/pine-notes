@@ -40,7 +40,7 @@ const SideNav = () => {
         </button>
 
         <h3 className="header-title">
-          Pine <span style={{ color: "blue" }}>Notes</span>
+          Pine <span>Notes</span>
         </h3>
       </div>
 
