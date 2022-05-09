@@ -7,7 +7,7 @@ import { ColorPallete } from "../../colorPallete/ColorPallete";
 
 const EditNoteModal = ({ note, setEditNoteVisible }) => {
   
-  const [colorList, setColorList] = useState("");
+  const [editNoteColorList, setEditNoteColorList] = useState("");
 
   const { editNote, isOpen, setIsOpen } = useNote();
 
@@ -129,8 +129,8 @@ const EditNoteModal = ({ note, setEditNoteVisible }) => {
 
       {isOpen && (
         <ColorPallete
-        colorListt={editNoteContent.color}
-          setColorList={setColorList}
+        colorList={editNoteColorList}
+        setColorList={setEditNoteColorList}
           setNoteContent={setEditNoteContent}
           noteContent={editNoteContent}
         />
