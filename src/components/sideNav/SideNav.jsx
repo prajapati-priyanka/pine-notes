@@ -41,10 +41,13 @@ const SideNav = () => {
       </div>
 
       <ul className="nav-list">
+        <Link to="/home">
         <li className="side-nav-link">
           <BsLightbulb className="nav-list-icons" title="Bulb" />
           <span className="links-name">Notes</span>
         </li>
+        </Link>
+       
         <li
           onClick={() => setLabelModalVisible(true)}
           className="side-nav-link"
