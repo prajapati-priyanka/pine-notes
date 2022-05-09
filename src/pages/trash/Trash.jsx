@@ -4,11 +4,11 @@ import { useTrash } from "../../context/trash-context";
 import "./Trash.css"
 
 const Trash = () => {
-  const {trashState: {trash}, getTrashData} = useTrash();
+  const {trashState: {trash}, getAllTrashNotesHandler} = useTrash();
  
 useEffect(()=>{
-  getTrashData();
-},[getTrashData])
+  getAllTrashNotesHandler();
+},[])
 
   return (
     <div className="main-container">
