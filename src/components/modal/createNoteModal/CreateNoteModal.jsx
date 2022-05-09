@@ -5,10 +5,10 @@ import { IoClose } from "react-icons/io5";
 
 import "./CreateNoteModal.css";
 import { ColorPallete } from "../../colorPallete/ColorPallete";
-const CreateNoteModal = ({setCreateNoteModalVisible}) => {
+const CreateNoteModal = ({ setCreateNoteModalVisible }) => {
   const [colorList, setColorList] = useState("");
 
-  const { createNote, isOpen, setIsOpen} = useNote();
+  const { createNote, isOpen, setIsOpen } = useNote();
 
   const initialNotesData = {
     title: "",
@@ -28,13 +28,15 @@ const CreateNoteModal = ({setCreateNoteModalVisible}) => {
     <>
       <div className="modal-background">
         <div className="modal-container">
-           <header className="modal-header">
-               <h3>Create Note</h3>
-               <button className="close-icon" onClick={()=>setCreateNoteModalVisible(false)}>
-<IoClose />
-               </button>
-
-           </header>
+          <header className="modal-header">
+            <h3>Create Note</h3>
+            <button
+              className="close-icon"
+              onClick={() => setCreateNoteModalVisible(false)}
+            >
+              <IoClose />
+            </button>
+          </header>
           <form
             className="add-note-container"
             style={{ backgroundColor: noteContent.color }}
@@ -116,13 +118,7 @@ const CreateNoteModal = ({setCreateNoteModalVisible}) => {
                 </div>
                 <button
                   className="btn btn-primary create-note-btn"
-                  onClick={(e) =>
-                    createNote(e, noteContent, setNoteContent)
-                 
-                 
-                  
-                  
-                  }
+                  onClick={(e) => createNote(e, noteContent, setNoteContent)}
                 >
                   Create Note
                 </button>
