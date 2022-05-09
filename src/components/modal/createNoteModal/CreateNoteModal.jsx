@@ -23,7 +23,7 @@ const CreateNoteModal = ({ setCreateNoteModalVisible }) => {
   const expandColorPallete = () => {
     setIsOpen((isOpen) => !isOpen);
   };
-  // console.log("in createNote", {...notes}, isEditing, noteContent)
+
   return (
     <>
       <div className="modal-background">
@@ -122,22 +122,6 @@ const CreateNoteModal = ({ setCreateNoteModalVisible }) => {
                 >
                   Create Note
                 </button>
-
-                {/* {isEditing ? (  <button
-              className="btn btn-primary create-note-btn"
-              onClick={(e) =>
-                editNote(e, noteContent, setNoteContent, setIsOpen)
-              }
-            >
-              Save Note
-            </button>) : ( <button
-              className="btn btn-primary create-note-btn"
-              onClick={(e) =>
-                createNote(e, noteContent, setNoteContent, setIsOpen)
-              }
-            >
-              Create Note
-            </button>)} */}
               </div>
             </div>
           </form>
