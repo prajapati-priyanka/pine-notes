@@ -20,6 +20,10 @@
   background-color: transparent;
   cursor: pointer;
 }
+.logo-content .header-title span{
+  color: var(--primary-color);
+  font-family: cursive;
+}
 
 .side-nav .nav-list {
   margin-top: 3rem;
@@ -56,7 +60,9 @@
 .side-nav .nav-list .nav-list-icons {
   font-size: 2rem;
 }
-
+.active{
+  color: var(--link-color);
+}
 /* shrinked */
 
 .side-nav.shrinked {

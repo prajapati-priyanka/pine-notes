@@ -15,6 +15,14 @@ import {
   getAllNotesHandler,
   updateNoteHandler,
 } from "./backend/controllers/NotesController";
+
+import {
+  deleteFromTrashHandler,
+  getAllTrashNotesHandler,
+  restoreFromTrashHandler,
+  moveToTrashHandler,
+} from "./backend/controllers/TrashController";
+
 import { users } from "./backend/db/users";
 
 export function makeServer({ environment = "development" } = {}) {
@@ -36,6 +44,7 @@ export function makeServer({ environment = "development" } = {}) {
           ...item,
           notes: [],
           archives: [],
+          trash: [],
         })
       );
     },
@@ -63,6 +72,12 @@ export function makeServer({ environment = "development" } = {}) {
         "/archives/delete/:noteId",
         deleteFromArchivesHandler.bind(this)
       );
+
+      // trash routes (private)
+      this.get("/trash", getAllTrashNotesHandler.bind(this));
+      this.post("/trash/restore/:noteId", restoreFromTrashHandler.bind(this));
+      this.delete("/trash/delete/:noteId", deleteFromTrashHandler.bind(this));
+      this.post("/notes/trash/:noteId", moveToTrashHandler.bind(this));
     },
   });
   return server;

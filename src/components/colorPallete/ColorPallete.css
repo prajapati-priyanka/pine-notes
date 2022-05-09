@@ -1,12 +1,13 @@
 .color-pallete-container {
-  width: 25rem;
-  border: 1px solid var(--gray-color);
+  width: 24rem;
+  border: 1px solid var(--lynx-gray-color);
   border-radius: 5px;
   margin: auto;
   margin-bottom: 2rem;
   position: absolute;
-  left: 72rem;
-  top: 44rem;
+  right: 55rem;
+  top: 42rem;
+  z-index: 4;
 }
 
 .color-list {
