@@ -6,6 +6,7 @@ import "../createNoteModal/CreateNoteModal.css";
 import { ColorPallete } from "../../colorPallete/ColorPallete";
 
 const EditNoteModal = ({ note, setEditNoteVisible }) => {
+  
   const [colorList, setColorList] = useState("");
 
   const { editNote, isOpen, setIsOpen } = useNote();
@@ -120,22 +121,6 @@ const EditNoteModal = ({ note, setEditNoteVisible }) => {
                 >
                   Save Note
                 </button>
-
-                {/* {isEditing ? (  <button
-              className="btn btn-primary create-note-btn"
-              onClick={(e) =>
-                editNote(e, noteContent, setNoteContent, setIsOpen)
-              }
-            >
-              Save Note
-            </button>) : ( <button
-              className="btn btn-primary create-note-btn"
-              onClick={(e) =>
-                createNote(e, noteContent, setNoteContent, setIsOpen)
-              }
-            >
-              Create Note
-            </button>)} */}
               </div>
             </div>
           </form>
@@ -144,7 +129,7 @@ const EditNoteModal = ({ note, setEditNoteVisible }) => {
 
       {isOpen && (
         <ColorPallete
-          colorList={editNoteContent.color}
+        colorListt={editNoteContent.color}
           setColorList={setColorList}
           setNoteContent={setEditNoteContent}
           noteContent={editNoteContent}
