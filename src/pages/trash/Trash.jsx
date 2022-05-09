@@ -8,7 +8,7 @@ const Trash = () => {
  
 useEffect(()=>{
   getAllTrashNotesHandler();
-},[])
+},[getAllTrashNotesHandler])
 
   return (
     <div className="main-container">
@@ -24,8 +24,7 @@ useEffect(()=>{
             <NoteCard
               key={note._id}
               notes={note}
-              // pinnedNotes={pinnedNotes}
-              // setPinnedNotes={setPinnedNotes}
+             
             />
           ))}
         </div>
