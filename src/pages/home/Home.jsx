@@ -32,12 +32,12 @@ const Home = () => {
           </div>
           <Filter />
         </section>
-        <section className="add-note-section">
+        <section className="add-note-section text-center">
           <button
-            className="btn btn-primary"
+            className="btn btn-primary md-text create-note-btn"
             onClick={() => setCreateNoteModalVisible(true)}
           >
-            Create Note
+            CREATE NOTE
           </button>
         </section>
 
