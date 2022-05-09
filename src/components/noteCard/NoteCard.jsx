@@ -1,15 +1,26 @@
 import { BsPin, BsPinFill, BsTrash } from "react-icons/bs";
-import { MdOutlineModeEditOutline, MdOutlineArchive } from "react-icons/md";
+import {
+  MdOutlineModeEditOutline,
+  MdOutlineArchive,
+  MdRestoreFromTrash,
+} from "react-icons/md";
 import { useState } from "react";
-
 import "./NoteCard.css";
 import toast from "react-hot-toast";
-import { useNote } from "../../context/notes-context";
 import { EditNoteModal } from "../modal/editNoteModal/EditNoteModal";
+import { useLocation } from "react-router-dom";
+import { useTrash } from "../../context/trash-context";
 
 const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
   const [isPinned, setIsPinned] = useState(false);
   const [editNoteVisible, setEditNoteVisible] = useState(false);
+  const location = useLocation();
+  const {
+    moveToTrashHandler,
+    trashState,
+    restoreFromTrashHandler,
+    deleteFromTrashHandler,
+  } = useTrash();
 
   const { title, content, tags, color, priority } = notes;
 
@@ -35,6 +46,26 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
     setPinnedNotes(newPinnedNote);
     setIsPinned(!isPinned);
     toast("Note Unpinned");
+  };
+
+  const moveToTrash = (notes) => {
+    console.log("clicked");
+    if (location.pathname === "/home") {
+      moveToTrashHandler(notes);
+    }
+    if (location.pathname === "/trash") {
+      deleteFromTrashHandler(notes);
+    }
+  };
+
+  const notesInTrash = (notes) => {
+    const IsNotesInTrash = trashState.trash.find(
+      (note) => note._id === notes._id
+    );
+    if (IsNotesInTrash) {
+      return true;
+    }
+    return false;
   };
 
   return (
@@ -71,18 +102,34 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
         <div className="note-footer">
           <p className="note-date">Created on {date} </p>
           <div className="note-action-btns">
-            <button className="action-btn">
-              <BsTrash />
-            </button>
             <button
               className="action-btn"
-              onClick={(e) => setEditNoteVisible(true)}
+              title="delete"
+              onClick={() => moveToTrash(notes)}
             >
-              <MdOutlineModeEditOutline />
+              <BsTrash />
             </button>
-            <button className="action-btn">
-              <MdOutlineArchive />
-            </button>
+            {notesInTrash(notes) ? null : (
+              <button
+                className="action-btn"
+                onClick={(e) => setEditNoteVisible(true)}
+              >
+                <MdOutlineModeEditOutline />
+              </button>
+            )}
+            {notesInTrash(notes) ? (
+              <button
+                className="action-btn"
+                title="restore"
+                onClick={() => restoreFromTrashHandler(notes)}
+              >
+                <MdRestoreFromTrash />
+              </button>
+            ) : (
+              <button className="action-btn" title="archive">
+                <MdOutlineArchive />
+              </button>
+            )}
           </div>
         </div>
       </div>
