@@ -5,11 +5,13 @@
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  height: 20rem;
-  
+  height: fit-content;
   margin-right: 1rem;
-  
-}
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: wrap;
+ }
+
 .notes-card .card-header{
   position: static;
 }
@@ -53,19 +55,19 @@
   margin: auto 0.5rem;
 }
 
-.notes-card:hover .note-action-btns {
+.notes-card .note-action-btns {
   display: block;
 }
 .notes-label-priority{
 display: flex;
 gap: 1rem;
-margin-top: auto;
-
+margin: 0.5rem 0;
 }
-.notes-features{
 
+.notes-features{
 background-color: var(--warning-color);
 width: fit-content;
 padding: 0 0.8rem;
 border-radius: 0.5rem;
+justify-self: flex-end;
 }
