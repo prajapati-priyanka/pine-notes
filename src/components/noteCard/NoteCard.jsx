@@ -100,8 +100,8 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
           </div>
         </div>
         <div className="notes-label-priority md-text">
-          <div className="notes-features">{label}</div>
-          <div className="notes-features">{priority}</div>
+       {label && <div className="notes-features">{label}</div>}   
+         {priority && <div className="notes-features">{priority}</div>}
         </div>
         <div className="note-footer">
           <p className="note-date">Created on {date} </p>
