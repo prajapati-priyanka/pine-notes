@@ -8,7 +8,7 @@ const Archive = () => {
  
 useEffect(()=>{
   getAllArchivedNotesHandler();
-},[])
+},[getAllArchivedNotesHandler])
  
 
 
