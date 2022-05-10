@@ -71,12 +71,12 @@ const SideNav = () => {
           </NavLink>)
         )}
 
-         <button className="btn btn-edit side-nav-link" onClick={()=> setLabelModalVisible(true)}>
+         <div className="label-edit side-nav-link" onClick={()=> setLabelModalVisible(true)}>
           <span>
             <MdOutlineModeEditOutline className="nav-list-icons" title="Edit" />
           </span>
           <span className="links-name">Edit Labels</span>
-        </button> 
+        </div> 
 
         <NavLink
           to="/archive"
