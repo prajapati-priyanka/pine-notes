@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { SideNav, NoteCard } from "../../components";
 import { useArchive } from "../../context/archive-context";
-import "../trash/Trash.css"
+import "../trash/Trash.css";
 
 const Archive = () => {
   const {archiveState: {archive}, getAllArchivedNotesHandler} = useArchive();
@@ -18,7 +18,7 @@ useEffect(()=>{
      
       {archive.length > 0 ?(
 
-          <section className="all-notes-section">
+          <section className="all-notes-section main-content">
           <h4 className="all-notes-heading">Archived Notes</h4>
 
         <div className="all-notes-container">

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { SideNav, NoteCard } from "../../components";
 import { useTrash } from "../../context/trash-context";
-import "./Trash.css"
+import "./Trash.css";
 
 const Trash = () => {
   const {trashState: {trash}, getAllTrashNotesHandler} = useTrash();
@@ -16,7 +16,7 @@ useEffect(()=>{
       {
         trash.length > 0 ?(
 
-          <section className="all-notes-section">
+          <section className="all-notes-section main-content">
         <h4 className="all-notes-heading">Trashed Notes</h4>
 
         <div className="all-notes-container">
