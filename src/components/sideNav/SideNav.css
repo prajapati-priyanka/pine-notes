@@ -60,9 +60,10 @@
 .side-nav .nav-list .nav-list-icons {
   font-size: 2rem;
 }
-.active{
+.active , .btn-edit{
   color: var(--link-color);
 }
+
 /* shrinked */
 
 .side-nav.shrinked {
