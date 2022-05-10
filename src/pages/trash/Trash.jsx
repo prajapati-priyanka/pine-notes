@@ -17,7 +17,7 @@ useEffect(()=>{
         trash.length > 0 ?(
 
           <section className="all-notes-section">
-        <h4 className="all-notes-heading">All Notes</h4>
+        <h4 className="all-notes-heading">Trashed Notes</h4>
 
         <div className="all-notes-container">
           {trash.map((note) => (
