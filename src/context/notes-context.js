@@ -24,11 +24,26 @@ const NotesProvider = ({ children }) => {
 
   const token = authState.token || JSON.parse(localStorage.getItem("token"));
 
+const getAllNotesHandler = async()=>{
+  try {
+    const response = await axios.get("/api/notes",  { headers: { authorization: token } })
+    console.log(response)
+    if(response.status === 200){
+        notesDispatch({type:"UPDATE_NOTES", payload: response.data.notes})
+    }else{
+      throw new Error("Can't Process Request");
+    }
+    
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
   const createNote = async (
     e,
     notesContent,
     setNoteContent,
-    setCreateNoteModalVisible
   ) => {
     e.preventDefault();
     if (notesContent.title !== "" && notesContent.content !== "") {
@@ -39,7 +54,7 @@ const NotesProvider = ({ children }) => {
             { note: notesContent },
             { headers: { authorization: token } }
           );
-          console.log("in notes-context", response);
+         
           if (response.status === 201) {
             localStorage.setItem("notes", JSON.stringify(response.data.notes));
             notesDispatch({ type: "ADD_NOTE", payload: response.data.notes });
@@ -111,6 +126,7 @@ const NotesProvider = ({ children }) => {
         isEditing,
         setIsEditing,
         editNote,
+        getAllNotesHandler
       }}
     >
       {children}

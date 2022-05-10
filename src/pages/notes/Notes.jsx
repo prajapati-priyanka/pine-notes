@@ -1,12 +1,17 @@
 import { useNote } from "../../context/notes-context";
 import { NoteCard, PinnedCard } from "../../components";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+
 
 const Notes = () => {
   const [pinnedNotes, setPinnedNotes] = useState([]);
 
-  const { notesState } = useNote();
-  const { notes } = notesState;
+  const { notesState :{notes}, getAllNotesHandler } = useNote();
+
+  useEffect(()=>{
+    getAllNotesHandler()
+  },[])
+  
 
   return (
     <>
