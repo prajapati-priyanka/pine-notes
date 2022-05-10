@@ -32,7 +32,7 @@ const TrashProvider = ({ children }) => {
         headers: { authorization: token },
       });
 
-      if (response === 200) {
+      if (response.status === 200) {
         trashDispatch({ type: "UPDATE_TRASH", payload: response.data.trash });
       } else {
         throw new Error("Can't process the request");
