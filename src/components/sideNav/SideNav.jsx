@@ -1,17 +1,23 @@
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BsLightbulb, BsTrash } from "react-icons/bs";
-import { MdOutlineModeEditOutline, MdOutlineArchive } from "react-icons/md";
+import {
+  MdOutlineModeEditOutline,
+  MdOutlineArchive,
+  MdLabelOutline,
+} from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
 import "./SideNav.css";
 import { EditLable } from "../modal/editLabel/EditLabel";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import toast from "react-hot-toast";
+import { useLabels } from "../../context/labels-context";
 
 const SideNav = () => {
   const { authDispatch } = useAuth();
   const navigate = useNavigate();
+  const { labelsState } = useLabels();
   const [labelModalVisible, setLabelModalVisible] = useState(false);
   const [sideNavShrinked, setSideNavShrinked] = useState(false);
 
@@ -23,9 +29,9 @@ const SideNav = () => {
     navigate("/");
   };
 
-  const getActiveLinkStyle= ({isActive})=>({
+  const getActiveLinkStyle = ({ isActive }) => ({
     color: isActive ? "#0693e3" : "",
-  })
+  });
 
   return (
     <nav className={`side-nav ${sideNavShrinked ? "shrinked" : ""}`}>
@@ -45,46 +51,70 @@ const SideNav = () => {
       </div>
 
       <div className="nav-list">
-        <NavLink to="/home" className="side-nav-link" style={getActiveLinkStyle}>
-    
-          <span><BsLightbulb className="nav-list-icons" title="Bulb" /></span>
-          <span className="links-name">Notes</span>
-        
-        </NavLink>
-       
-        <NavLink to="/home"
-          onClick={() => setLabelModalVisible(true)}
+        <NavLink
+          to="/home"
           className="side-nav-link"
-        
+          style={getActiveLinkStyle}
         >
-         <span><MdOutlineModeEditOutline className="nav-list-icons" title="Edit" /></span> 
-          <span className="links-name">Edit Labels</span>
-          </NavLink>
-
-        <NavLink to="/archive" className="side-nav-link" style={getActiveLinkStyle}>
-          <span><MdOutlineArchive className="nav-list-icons" title="Archive" />
+          <span>
+            <BsLightbulb className="nav-list-icons" title="Bulb" />
+          </span>
+          <span className="links-name">Notes</span>
+        </NavLink>
+      
+        {labelsState.labels.map((label,index) =>  (
+          <NavLink to="/home" key={index} className="side-nav-link">
+            <span>
+              <MdLabelOutline className="nav-list-icons" />
             </span>
+            <span className="links-name">{label}</span>
+          </NavLink>)
+        )}
+
+         <div className="label-edit side-nav-link" onClick={()=> setLabelModalVisible(true)}>
+          <span>
+            <MdOutlineModeEditOutline className="nav-list-icons" title="Edit" />
+          </span>
+          <span className="links-name">Edit Labels</span>
+        </div> 
+
+        <NavLink
+          to="/archive"
+          className="side-nav-link"
+          style={getActiveLinkStyle}
+        >
+          <span>
+            <MdOutlineArchive className="nav-list-icons" title="Archive" />
+          </span>
           <span className="links-name">Archive</span>
         </NavLink>
 
-        <NavLink to="/trash" className="side-nav-link" style={getActiveLinkStyle}>
-        <span> <BsTrash className="nav-list-icons" title="Trash" /></span>
-         
+        <NavLink
+          to="/trash"
+          className="side-nav-link"
+          style={getActiveLinkStyle}
+        >
+          <span>
+            {" "}
+            <BsTrash className="nav-list-icons" title="Trash" />
+          </span>
+
           <span className="links-name">Trash</span>
-       
         </NavLink>
-       
-        <NavLink to = "/" className="side-nav-link" onClick={logoutHandler} style={getActiveLinkStyle}>
-          <span><IoMdLogOut className="nav-list-icons" title="Logout" /></span>
+
+        <NavLink
+          to="/"
+          className="side-nav-link"
+          onClick={logoutHandler}
+          style={getActiveLinkStyle}
+        >
+          <span>
+            <IoMdLogOut className="nav-list-icons" title="Logout" />
+          </span>
           <span className="links-name">Logout</span>
         </NavLink>
       </div>
-      {labelModalVisible ? (
-        <EditLable
-          labelModalVisible={labelModalVisible}
-          setLabelModalVisible={setLabelModalVisible}
-        />
-      ) : null}
+      {labelModalVisible? <EditLable labelModalVisible={labelModalVisible} setLabelModalVisible={setLabelModalVisible} /> : null}
     </nav>
   );
 };

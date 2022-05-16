@@ -3,6 +3,7 @@ import {
   MdOutlineModeEditOutline,
   MdOutlineArchive,
   MdRestoreFromTrash,
+  MdOutlineUnarchive
 } from "react-icons/md";
 import { useState } from "react";
 import "./NoteCard.css";
@@ -10,6 +11,7 @@ import toast from "react-hot-toast";
 import { EditNoteModal } from "../modal/editNoteModal/EditNoteModal";
 import { useLocation } from "react-router-dom";
 import { useTrash } from "../../context/trash-context";
+import { useArchive } from "../../context/archive-context";
 
 const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
   const [isPinned, setIsPinned] = useState(false);
@@ -17,10 +19,15 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
   const location = useLocation();
   const {
     moveToTrashHandler,
-    trashState,
     restoreFromTrashHandler,
     deleteFromTrashHandler,
   } = useTrash();
+ 
+  const {
+    moveToArchiveHandler,
+    restoreFromArchiveHandler,
+    deleteFromArchiveHandler
+     } = useArchive();
 
   const { title, content, tags, color, priority } = notes;
 
@@ -49,24 +56,21 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
   };
 
   const moveToTrash = (notes) => {
-    console.log("clicked");
+  
     if (location.pathname === "/home") {
       moveToTrashHandler(notes);
     }
     if (location.pathname === "/trash") {
       deleteFromTrashHandler(notes);
     }
-  };
-
-  const notesInTrash = (notes) => {
-    const IsNotesInTrash = trashState.trash.find(
-      (note) => note._id === notes._id
-    );
-    if (IsNotesInTrash) {
-      return true;
+    if (location.pathname === "/archive"){
+      deleteFromArchiveHandler(notes);
     }
-    return false;
+   
   };
+ 
+
+ 
 
   return (
     <>
@@ -96,12 +100,14 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
           </div>
         </div>
         <div className="notes-label-priority md-text">
-          <div className="notes-features">{label}</div>
-          <div className="notes-features">{priority}</div>
+       {label && <div className="notes-features">{label}</div>}   
+         {priority && <div className="notes-features">{priority}</div>}
         </div>
         <div className="note-footer">
           <p className="note-date">Created on {date} </p>
           <div className="note-action-btns">
+
+        
             <button
               className="action-btn"
               title="delete"
@@ -109,15 +115,23 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
             >
               <BsTrash />
             </button>
-            {notesInTrash(notes) ? null : (
+             
+
+            {location.pathname === "/home"  ? (<>
               <button
                 className="action-btn"
                 onClick={(e) => setEditNoteVisible(true)}
               >
                 <MdOutlineModeEditOutline />
               </button>
-            )}
-            {notesInTrash(notes) ? (
+
+           <button className="action-btn" title="archive" onClick={()=> moveToArchiveHandler(notes)}>
+            <MdOutlineArchive />
+            </button>
+            </>
+            ): null }
+
+            {location.pathname === "/trash" &&  (
               <button
                 className="action-btn"
                 title="restore"
@@ -125,10 +139,14 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
               >
                 <MdRestoreFromTrash />
               </button>
-            ) : (
-              <button className="action-btn" title="archive">
-                <MdOutlineArchive />
-              </button>
+            ) 
+          
+            }
+
+            {location.pathname === "/archive" && (
+              <button className="action-btn" title="unarchive" onClick={()=>restoreFromArchiveHandler(notes)}>
+                 <MdOutlineUnarchive/>
+                 </button>
             )}
           </div>
         </div>

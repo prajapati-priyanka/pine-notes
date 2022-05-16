@@ -23,6 +23,12 @@
   border-radius: 0.5em;
   padding: 1em;
 }
+.modal-background .label-modal{
+  width: 20%;
+}
+.label-modal .error-msg{
+  color: var(--red);
+}
 
 .modal-container .input-container {
   display: flex;
@@ -49,4 +55,20 @@
 }
 .btn-check {
   color: var(--black-color);
+}
+
+@media screen and (max-width: 1024px) {
+  .modal-background .label-modal{
+    width: 30%;
+  }
+}
+@media screen and (max-width: 750px) {
+  .modal-background .label-modal{
+    width: 50%;
+  }
+}
+@media screen and (max-width: 510px) {
+  .modal-background .label-modal{
+    width: 70%;
+  }
 }

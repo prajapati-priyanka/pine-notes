@@ -24,6 +24,7 @@ import {
 } from "./backend/controllers/TrashController";
 
 import { users } from "./backend/db/users";
+import{v4 as uuid} from "uuid";
 
 export function makeServer({ environment = "development" } = {}) {
   const server = new Server({
@@ -42,7 +43,16 @@ export function makeServer({ environment = "development" } = {}) {
       users.forEach((item) =>
         server.create("user", {
           ...item,
-          notes: [],
+          notes: [
+            {
+              _id: uuid(),
+              title: "Favourite Quote",
+              content:  "You have to believe in yourself when no one else does  that makes you a winner right here.",
+              color: "",
+              tags: ["home"],
+              priority: "medium",
+            }
+          ],
           archives: [],
           trash: [],
         })

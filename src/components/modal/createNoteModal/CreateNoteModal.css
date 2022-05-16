@@ -1,22 +1,22 @@
 .modal-container {
   width: 50%;
 }
+
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .modal-container .add-note-container {
-  /* width: 80%; */
   margin: auto;
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   border-radius: 0.5rem;
   padding: 1rem;
-
-  /* margin-bottom: 10rem; */
 }
+
 .note-title {
   border: none;
   outline: none;
@@ -25,6 +25,7 @@
   border: 1px solid var(--lynx-gray-color);
   background-color: var(--lynx-white-color);
 }
+
 .note-content {
   margin-top: 1rem;
   border: 0;
