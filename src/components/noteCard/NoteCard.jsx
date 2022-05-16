@@ -10,8 +10,8 @@ import "./NoteCard.css";
 import toast from "react-hot-toast";
 import { EditNoteModal } from "../modal/editNoteModal/EditNoteModal";
 import { useLocation } from "react-router-dom";
-import { useTrash } from "../../context/trash-context";
-import { useArchive } from "../../context/archive-context";
+import { useTrash, useArchive } from "../../context";
+import { getDateString, getTimeString } from "../../helpers/notesHelpers";
 
 const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
   const [isPinned, setIsPinned] = useState(false);
@@ -29,11 +29,11 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
     deleteFromArchiveHandler
      } = useArchive();
 
-  const { title, content, tags, color, priority } = notes;
+  const { title, content, tags, color, priority, date } = notes;
 
   const [label] = tags;
 
-  const date = new Date().toLocaleDateString();
+
 
   const addPinnedNotes = (note) => {
     const newNote = pinnedNotes.find((item) => item._id === note._id);
@@ -104,7 +104,7 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
          {priority && <div className="notes-features">{priority}</div>}
         </div>
         <div className="note-footer">
-          <p className="note-date">Created on {date} </p>
+          <p className="note-date">{getDateString(date)} | {getTimeString(date)} </p>
           <div className="note-action-btns">
 
         
