@@ -16,10 +16,10 @@ const CreateNoteModal = ({ setCreateNoteModalVisible }) => {
     color: colorList,
     tags: [],
     priority: "",
+    date: new Date().toLocaleString()
   };
 
   const [noteContent, setNoteContent] = useState(initialNotesData);
-
   const expandColorPallete = () => {
     setIsOpen((isOpen) => !isOpen);
   };
