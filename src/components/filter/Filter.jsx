@@ -66,6 +66,31 @@ const Filter = () => {
           <label htmlFor="old-first">Oldest First</label>
         </div>
       </div>
+      <div className="filter-type">
+        <h3 className="filter-type-heading lg-text">Labels</h3>
+        <div className="filter-type-container md-text">
+          <input
+            type="radio"
+            id="low-high"
+            className="input-radio"
+            name="sort"
+            value="Low-to-High"
+            
+          />
+          <label htmlFor="low-high">Home</label>
+        </div>
+        <div className="filter-type-container md-text">
+          <input
+            type="radio"
+            id="high-low"
+            className="input-radio"
+            name="sort"
+            value="High-to-Low"
+          
+          />
+          <label htmlFor="high-low">Work</label>
+        </div>
+      </div>
       </div>
 
       ) : null }
