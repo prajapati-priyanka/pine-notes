@@ -8,6 +8,7 @@ import { Notes } from "../notes/Notes";
 
 const Home = () => {
   const [createNoteModalVisible, setCreateNoteModalVisible] = useState(false);
+  const [editNote, setEditNote] = useState(null)
 
   const { getNotesData } = useNote();
 
@@ -45,7 +46,7 @@ const Home = () => {
           <h2 className="notes-heading">Notes</h2>
         </section>
 
-        <Notes />
+        <Notes setCreateNoteModalVisible={setCreateNoteModalVisible} editNote={editNote} setEditNote={setEditNote} />
       </main>
 
       {createNoteModalVisible ? (
@@ -53,6 +54,8 @@ const Home = () => {
           <CreateNoteModal
             setCreateNoteModalVisible={setCreateNoteModalVisible}
             createNoteModalVisible={createNoteModalVisible}
+            setEditNote={setEditNote}
+            editNote={editNote}
           />
         </section>
       ) : null}
