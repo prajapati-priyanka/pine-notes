@@ -3,8 +3,9 @@ import { NoteCard, PinnedCard } from "../../components";
 import { useState, useEffect,useRef } from "react";
 
 
-const Notes = () => {
+const Notes = ({editNote, setEditNote ,setCreateNoteModalVisible}) => {
   const [pinnedNotes, setPinnedNotes] = useState([]);
+
   const {
     notesState: { notes },
     getAllNotesHandler,
@@ -30,6 +31,9 @@ const Notes = () => {
               notes={note}
               pinnedNotes={pinnedNotes}
               setPinnedNotes={setPinnedNotes}
+              setEditNote={setEditNote}
+              editNote={editNote}
+              setCreateNoteModalVisible={setCreateNoteModalVisible}
             />
           ))}
         </div>
