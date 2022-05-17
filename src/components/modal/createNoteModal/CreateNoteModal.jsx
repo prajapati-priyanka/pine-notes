@@ -1,25 +1,57 @@
 import { useState } from "react";
-import { useNote } from "../../../context/notes-context";
 import { MdOutlineColorLens } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
-
 import "./CreateNoteModal.css";
 import { ColorPallete } from "../../colorPallete/ColorPallete";
-const CreateNoteModal = ({ setCreateNoteModalVisible }) => {
+import { useAuth, useLabels, useNote } from "../../../context";
+import { editNoteHandler } from "../../../helpers/utils/editNoteHandler";
+import { addNoteHandler } from "../../../helpers/utils/addNoteHandler";
+
+const CreateNoteModal = ({
+  setCreateNoteModalVisible,
+  editNote,
+  setEditNote,
+}) => {
   const [colorList, setColorList] = useState("");
 
-  const { createNote, isOpen, setIsOpen } = useNote();
+  const { isOpen, setIsOpen, notesDispatch } = useNote();
+  const {
+    labelsState: { labels },
+  } = useLabels();
+  const { authState } = useAuth();
 
-  const initialNotesData = {
+  const token = authState.token || localStorage.getItem("token");
+
+  const initialNotesData = editNote ?? {
     title: "",
     content: "",
     color: colorList,
-    tags: [],
+    labels: [],
     priority: "",
-    date: new Date().toLocaleString()
+    date: new Date().toLocaleString(),
+  };
+  const [noteContent, setNoteContent] = useState(initialNotesData);
+
+  const checkInputs = () => {
+    if (noteContent.title !== "" && noteContent.content !== "") {
+      return true;
+    }
+    return false;
   };
 
-  const [noteContent, setNoteContent] = useState(initialNotesData);
+  const createNoteHandler = (e) => {
+    const newNote = { ...noteContent };
+
+    if (checkInputs()) {
+      editNote
+        ? editNoteHandler(e, token, newNote, notesDispatch)
+        : addNoteHandler(e, token, newNote, notesDispatch);
+    }
+    setEditNote(null);
+    setIsOpen(false);
+    setCreateNoteModalVisible(false);
+  };
+
   const expandColorPallete = () => {
     setIsOpen((isOpen) => !isOpen);
   };
@@ -29,7 +61,7 @@ const CreateNoteModal = ({ setCreateNoteModalVisible }) => {
       <div className="modal-background">
         <div className="modal-container">
           <header className="modal-header">
-            <h3>Create Note</h3>
+            {editNote ? <h3>Edit Note</h3> : <h3>Create Note</h3>}
             <button
               className="close-icon"
               onClick={() => setCreateNoteModalVisible(false)}
@@ -78,17 +110,20 @@ const CreateNoteModal = ({ setCreateNoteModalVisible }) => {
                   id="note-label"
                   className="select"
                   name="label"
-                  value={noteContent.value}
+                  value={noteContent.labels[0]}
                   onChange={(e) =>
                     setNoteContent((prevContent) => ({
                       ...prevContent,
-                      tags: [e.target.value],
+                      labels: [e.target.value],
                     }))
                   }
                 >
-                  <option value="">--Choose--</option>
-                  <option value="home">Home</option>
-                  <option value="work">Work</option>
+                  <option value="">None</option>
+                  {labels.map((label, index) => (
+                    <option key={index} value={label}>
+                      {label}
+                    </option>
+                  ))}
                 </select>
                 <label htmlFor="note-priority" className="label md-text">
                   Priority:
@@ -118,9 +153,9 @@ const CreateNoteModal = ({ setCreateNoteModalVisible }) => {
                 </div>
                 <button
                   className="btn btn-primary create-note-btn"
-                  onClick={(e) => createNote(e, noteContent, setNoteContent)}
+                  onClick={createNoteHandler}
                 >
-                  Create Note
+                  {editNote ? "Save Note" : "Create Note"}
                 </button>
               </div>
             </div>
