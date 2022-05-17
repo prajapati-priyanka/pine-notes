@@ -1,9 +1,7 @@
 import { createContext, useContext, useReducer, useState } from "react";
 import { notesReducer } from "../reducer/notes-reducer";
-import { useAuth } from "../context/auth-context";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
+// import { useAuth } from "../context/auth-context";
+// import axios from "axios";
 
 const notesInitialState = {
   notes: [],
@@ -19,40 +17,40 @@ const NotesProvider = ({ children }) => {
     notesInitialState
   );
 
-  const { authState } = useAuth();
+  // const { authState } = useAuth();
 
-  const token = authState.token || JSON.parse(localStorage.getItem("token"));
+  // const token = authState.token || JSON.parse(localStorage.getItem("token"));
 
-const getAllNotesHandler = async()=>{
-  try {
-    const response = await axios.get("/api/notes",  { headers: { authorization: token } })
-    console.log(response)
-    if(response.status === 200){
-        notesDispatch({type:"UPDATE_NOTES", payload: response.data.notes})
-    }else{
-      throw new Error("Can't Process Request");
-    }
+// const getAllNotesHandler = async()=>{
+//   try {
+//     const response = await axios.get("/api/notes",  { headers: { authorization: token } })
     
-  } catch (error) {
-    console.log(error)
-  }
-}
+//     if(response.status === 200){
+//         notesDispatch({type:"UPDATE_NOTES", payload: response.data.notes})
+//     }else{
+//       throw new Error("Can't Process Request");
+//     }
+    
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
 
-  const getNotesData = async () => {
-    try {
-      const response = await axios.get("/api/notes", {
-        headers: { authorization: token },
-      });
-      if (response.status === 200) {
-        notesDispatch({ type: "ADD_NOTES", payload: response.data.notes });
-      } else {
-        throw new Error("Can't Process Request");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getNotesData = async () => {
+  //   try {
+  //     const response = await axios.get("/api/notes", {
+  //       headers: { authorization: token },
+  //     });
+  //     if (response.status === 200) {
+  //       notesDispatch({ type: "ADD_NOTES", payload: response.data.notes });
+  //     } else {
+  //       throw new Error("Can't Process Request");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
 
   return (
@@ -60,10 +58,10 @@ const getAllNotesHandler = async()=>{
       value={{
         notesState,
         notesDispatch,
-        getNotesData,
+        // getNotesData,
         isOpen,
         setIsOpen,
-       getAllNotesHandler
+      //  getAllNotesHandler
       }}
     >
       {children}
