@@ -63,7 +63,13 @@ display: flex;
 gap: 1rem;
 margin: 0.5rem 0;
 }
-
+.notes-label-name{
+background-color: var(--warning-color);
+width: fit-content;
+padding: 0 0.8rem;
+border-radius: 0.5rem;
+justify-self: flex-end;
+}
 .notes-features{
 background-color: var(--warning-color);
 width: fit-content;
