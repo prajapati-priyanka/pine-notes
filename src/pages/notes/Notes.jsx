@@ -1,23 +1,33 @@
-import { useNote } from "../../context/notes-context";
 import { NoteCard, PinnedCard } from "../../components";
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect} from "react";
+import { useNote, useFilter, useAuth } from "../../context";
+import { getFilteredData} from "../../helpers/filterHelpers";
+import { getAllNotesHandler } from "../../helpers/utils/getAllNotesHandler";
 
 
 const Notes = ({editNote, setEditNote ,setCreateNoteModalVisible}) => {
+  
   const [pinnedNotes, setPinnedNotes] = useState([]);
 
   const {
-    notesState: { notes },
-    getAllNotesHandler,
+    notesState: { notes }, notesDipatch
   } = useNote();
- 
-  const tempAllNotesHandler = useRef();
 
-  tempAllNotesHandler.current = getAllNotesHandler
+  const {authState} = useAuth();
+
+  const token = authState.token || localStorage.getItem("token")
+  
+  const {filterState} = useFilter();
+ 
+  // const tempAllNotesHandler = useRef();
+
+  // tempAllNotesHandler.current = getAllNotesHandler
 
   useEffect(() => {
-    tempAllNotesHandler.current() ;
+    getAllNotesHandler(token, notesDipatch) ;
   }, []);
+
+  const filteredData = getFilteredData(notes,filterState);
 
   return (
     <>
@@ -25,7 +35,7 @@ const Notes = ({editNote, setEditNote ,setCreateNoteModalVisible}) => {
         <h4 className="all-notes-heading">All Notes</h4>
 
         <div className="all-notes-container">
-          {notes.map((note) => (
+          {filteredData.map((note) => (
             <NoteCard
               key={note._id}
               notes={note}

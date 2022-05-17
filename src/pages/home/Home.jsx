@@ -2,19 +2,22 @@ import { FaSearch } from "react-icons/fa";
 import { SideNav, CreateNoteModal, Filter } from "../../components";
 import { useState } from "react";
 import "./Home.css";
-import { useNote } from "../../context/notes-context";
+import { useNote,useAuth } from "../../context";
 import { useEffect } from "react";
 import { Notes } from "../notes/Notes";
+import { getAllNotesHandler } from "../../helpers/utils/getAllNotesHandler";
 
 const Home = () => {
   const [createNoteModalVisible, setCreateNoteModalVisible] = useState(false);
   const [editNote, setEditNote] = useState(null)
+const {notesDispatch} = useNote()
+  const {authState} = useAuth();
 
-  const { getNotesData } = useNote();
+  const token = authState.token || localStorage.getItem("token")
 
   useEffect(() => {
-    getNotesData();
-  }, [getNotesData]);
+    getAllNotesHandler(token, notesDispatch);
+  }, []);
 
   return (
     <div className="main-container">
