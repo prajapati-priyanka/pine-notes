@@ -51,7 +51,18 @@ const filterByLabel = (data, filterState) => {
   return filteredLabel;
 };
 
+const filterBySearchValue = (data, filterState) => {
+  const searchByValue = filterState.searchValue.trim().toLowerCase();
+
+  return data.filter((item) =>
+    item.title.trim().toLowerCase().includes(searchByValue)
+  );
+};
+
 export const getFilteredData = (data, filterState) => {
+  if (filterState.searchValue.trim() !== "") {
+    return filterBySearchValue(data, filterState);
+  }
   const getLabelFilter = filterByLabel(data, filterState);
   const getPriorityFilter = filterByPriority(getLabelFilter, filterState);
   const getDateFilter = filterByDate(getPriorityFilter, filterState);

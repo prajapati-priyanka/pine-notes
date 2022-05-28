@@ -2,7 +2,7 @@ import { FaSearch } from "react-icons/fa";
 import { SideNav, CreateNoteModal, Filter } from "../../components";
 import { useState } from "react";
 import "./Home.css";
-import { useNote,useAuth } from "../../context";
+import { useNote,useAuth, useFilter } from "../../context";
 import { useEffect } from "react";
 import { Notes } from "../notes/Notes";
 import { getAllNotesHandler } from "../../helpers/utils/getAllNotesHandler";
@@ -10,14 +10,17 @@ import { getAllNotesHandler } from "../../helpers/utils/getAllNotesHandler";
 const Home = () => {
   const [createNoteModalVisible, setCreateNoteModalVisible] = useState(false);
   const [editNote, setEditNote] = useState(null)
-const {notesDispatch} = useNote()
+const {notesState:{notes}, notesDispatch} = useNote()
   const {authState} = useAuth();
+  
+  const {filterState : {searchValue}, filterDispatch} = useFilter()
 
   const token = authState.token || localStorage.getItem("token")
 
   useEffect(() => {
     getAllNotesHandler(token, notesDispatch);
   }, []);
+
 
   return (
     <div className="main-container">
@@ -32,6 +35,8 @@ const {notesDispatch} = useNote()
               type="search"
               placeholder="Type to search"
               className="input-search"
+              value={searchValue}
+              onChange={(e)=>filterDispatch({type:"SET_SEARCH_VALUE", payload: e.target.value})}
             />
           </div>
           <Filter />
