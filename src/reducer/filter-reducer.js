@@ -27,6 +27,21 @@ export const filterReducer =(state,action)=>{
               ...state,
               labels: state.labels.filter(label => label !== action.payload)
           }
+      case "SET_SEARCH_VALUE":
+         
+          return{
+              ...state,
+              searchValue: action.payload
+          }
+
+      case "CLEAR_ALL":
+         
+          return {
+              ...state,
+            sortByDate: null,
+            priority: null,
+            labels:[],
+          }
       
        
       
