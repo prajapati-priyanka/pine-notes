@@ -1,11 +1,9 @@
 .notes-filter-wrapper {
   position: relative;
-  /* z-index: 1; */
 }
 .filter-container {
   font-size: 2.5rem;
   color: var(--black-color);
-  
 }
 
 .notes-filter-wrapper .filter-menu {
@@ -17,8 +15,6 @@
   border-radius: 0.5rem;
   padding: 1rem;
   background-color: var(--lynx-white-color);
-  
- 
 }
 .product-filter-clear {
   display: flex;
@@ -39,6 +35,9 @@
   padding: 0.5rem 0;
 }
 
+.filter-input-lables label {
+  margin-right: 1.5rem;
+}
 .input-radio {
   width: auto;
 }

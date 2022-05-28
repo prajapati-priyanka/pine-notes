@@ -1,6 +1,7 @@
 import { useState, Fragment } from "react";
 import { BiFilterAlt } from "react-icons/bi";
 import { useFilter, useLabels } from "../../context";
+import { convertStringFirstLetterCapital } from "../../helpers/notesHelpers";
 import "./Filter.css";
 
 const Filter = () => {
@@ -112,7 +113,7 @@ const Filter = () => {
           </div>
           <div className="filter-type">
             <h3 className="filter-type-heading lg-text">Labels</h3>
-            <div className="filter-type-container md-text">
+            <div className="filter-type-container md-text filter-input-lables">
               {labels.map((label, index) => {
                 return (
                   <Fragment key={index}>
@@ -125,7 +126,7 @@ const Filter = () => {
                       checked={filterState.labels.includes(label)}
                       onChange={toggleLabelHandler}
                     />
-                    <label htmlFor={index}>{label}</label>
+                    <label htmlFor={index}>{convertStringFirstLetterCapital(label)}</label>
                   </Fragment>
                 );
               })}
