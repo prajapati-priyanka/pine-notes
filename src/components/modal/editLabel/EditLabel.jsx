@@ -2,6 +2,7 @@ import { BsCheckLg, BsXLg } from "react-icons/bs";
 import { useState } from "react";
 import { useLabels } from "../../../context/labels-context";
 import "./EditLabel.css";
+import { convertStringFirstLetterCapital } from "../../../helpers/notesHelpers";
 
 const EditLable = ({setLabelModalVisible}) => {
 
@@ -42,7 +43,7 @@ const EditLable = ({setLabelModalVisible}) => {
         <ul className="modal-lists">
           {labelsState.labels.map((label,index )=>(
             <li key={index}>
-               <h4>{label}</h4>
+               <h4>{convertStringFirstLetterCapital(label)}</h4>
             <button className="btn btn-check">
               <BsXLg onClick={()=>deleteLabelHandler(label)}/>
             </button>

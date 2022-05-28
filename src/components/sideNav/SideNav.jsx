@@ -13,6 +13,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import toast from "react-hot-toast";
 import { useLabels } from "../../context/labels-context";
+import { convertStringFirstLetterCapital } from "../../helpers/notesHelpers";
 
 const SideNav = () => {
   const { authDispatch } = useAuth();
@@ -67,7 +68,7 @@ const SideNav = () => {
             <span>
               <MdLabelOutline className="nav-list-icons" />
             </span>
-            <span className="links-name">{label}</span>
+            <span className="links-name">{convertStringFirstLetterCapital(label)}</span>
           </NavLink>)
         )}
 
