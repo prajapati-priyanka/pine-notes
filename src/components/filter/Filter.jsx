@@ -54,7 +54,9 @@ const Filter = () => {
         <div className="filter-menu">
           <header className="product-filter-clear">
             <h3 className="product-filter-heading lg-text">Filters</h3>
-            <button className="btn reset md-text">Clear</button>
+            <button className="btn reset md-text" onClick={()=>{
+              filterDispatch({type:"CLEAR_ALL"})
+            }}>Clear</button>
           </header>
           <div className="filter-type">
             <h3 className="filter-type-heading lg-text">Priority</h3>
@@ -64,7 +66,8 @@ const Filter = () => {
                 id="low-to-high"
                 className="input-radio"
                 name="sort"
-                value={filterState.priority === "low"}
+                value="low-to-high"
+                checked={filterState.priority === "low-to-high"}
                 onChange={priorityChangeHandler}
               />
               <label htmlFor="low-to-high">Low To High</label>
@@ -75,7 +78,8 @@ const Filter = () => {
                 id="high-to-low"
                 className="input-radio"
                 name="sort"
-                value={filterState.priority === "high"}
+                value="high-to-low"
+                checked={filterState.priority === "high-to-low"}
                 onChange={priorityChangeHandler}
               />
               <label htmlFor="high-to-low">High To Low</label>
@@ -89,7 +93,7 @@ const Filter = () => {
                 id="new-first"
                 className="input-radio"
                 name="date"
-                value={filterState.sortByDate === "new-first"}
+                checked={filterState.sortByDate === "new-first"}
                 onChange={sortByDateHandler}
               />
               <label htmlFor="new-first">Newest First</label>
@@ -100,7 +104,7 @@ const Filter = () => {
                 id="old-first"
                 className="input-radio"
                 name="date"
-                value={filterState.sortByDate === "old-first"}
+                checked={filterState.sortByDate === "old-first"}
                 onChange={sortByDateHandler}
               />
               <label htmlFor="old-first">Oldest First</label>
