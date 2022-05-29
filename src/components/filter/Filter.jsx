@@ -1,4 +1,4 @@
-import { useState, Fragment } from "react";
+import { useState, Fragment, useRef, useEffect } from "react";
 import { BiFilterAlt } from "react-icons/bi";
 import { useFilter, useLabels } from "../../context";
 import { convertStringFirstLetterCapital } from "../../helpers/notesHelpers";
@@ -6,6 +6,8 @@ import "./Filter.css";
 
 const Filter = () => {
   const [filtersMenuVisible, setFiltersMenuVisible] = useState(false);
+
+  const ref = useRef(null);
 
   const { filterState, filterDispatch } = useFilter();
   const {
@@ -41,6 +43,19 @@ const Filter = () => {
     }
   };
 
+  const handleClickOutside = (event) => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      setFiltersMenuVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
+
   return (
     <div className="notes-filter-wrapper">
       <button
@@ -52,12 +67,17 @@ const Filter = () => {
         <BiFilterAlt title="Filter" />
       </button>
       {filtersMenuVisible ? (
-        <div className="filter-menu">
+        <div className="filter-menu" ref={ref}>
           <header className="notes-filter-clear">
             <h3 className="notes-filter-heading lg-text">Filters</h3>
-            <button className="btn reset md-text" onClick={()=>{
-              filterDispatch({type:"CLEAR_ALL"})
-            }}>Clear</button>
+            <button
+              className="btn reset md-text"
+              onClick={() => {
+                filterDispatch({ type: "CLEAR_ALL" });
+              }}
+            >
+              Clear
+            </button>
           </header>
           <div className="filter-type">
             <h3 className="filter-type-heading lg-text">Priority</h3>
@@ -126,7 +146,9 @@ const Filter = () => {
                       checked={filterState.labels.includes(label)}
                       onChange={toggleLabelHandler}
                     />
-                    <label htmlFor={index}>{convertStringFirstLetterCapital(label)}</label>
+                    <label htmlFor={index}>
+                      {convertStringFirstLetterCapital(label)}
+                    </label>
                   </Fragment>
                 );
               })}
