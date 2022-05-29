@@ -1,13 +1,14 @@
 .color-pallete-container {
-  width: 24rem;
+  width: 22rem;
   border: 1px solid var(--lynx-gray-color);
   border-radius: 5px;
   margin: auto;
   margin-bottom: 2rem;
   position: absolute;
   right: 55rem;
-  top: 42rem;
+  top: 41.5rem;
   z-index: 4;
+  background-color: var(--white-color);
 }
 
 .color-list {
@@ -22,4 +23,34 @@
   border: 1px solid var(--lynx-gray-color);
   border-radius: 50%;
   cursor: pointer;
+}
+
+@media screen and (max-width: 1280px) {
+  .color-pallete-container {
+    /* top: 35rem; */
+    right: 40rem;
+  }
+}
+@media screen and (max-width: 985px) {
+  .color-pallete-container {
+   
+    right: 27rem;
+  }
+}
+@media screen and (max-width: 660px) {
+  .color-pallete-container {
+   
+    right: 8rem;
+  }
+}
+@media screen and (max-width: 504px) {
+  .color-pallete-container {
+   top: 38rem;
+    right: 8rem;
+  }
+}
+@media screen and (max-width: 336px) {
+  .color-pallete-container {
+    right: 3rem;
+  }
 }
