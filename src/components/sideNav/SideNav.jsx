@@ -15,12 +15,12 @@ import toast from "react-hot-toast";
 import { useLabels } from "../../context/labels-context";
 import { convertStringFirstLetterCapital } from "../../helpers/notesHelpers";
 
-const SideNav = () => {
+const SideNav = ({sideNavShrinked, setSideNavShrinked}) => {
   const { authDispatch } = useAuth();
   const navigate = useNavigate();
   const { labelsState } = useLabels();
   const [labelModalVisible, setLabelModalVisible] = useState(false);
-  const [sideNavShrinked, setSideNavShrinked] = useState(false);
+ 
 
   const logoutHandler = () => {
     localStorage.removeItem("user");
