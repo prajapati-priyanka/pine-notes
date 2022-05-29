@@ -4,7 +4,7 @@
 }
 
 .notes-filter-wrapper .filter-menu {
-  position: absolute;
+  position: fixed;
   top: 8%;
   left: 55%;
   width: 28rem;
