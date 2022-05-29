@@ -53,8 +53,8 @@ const Filter = () => {
       </button>
       {filtersMenuVisible ? (
         <div className="filter-menu">
-          <header className="product-filter-clear">
-            <h3 className="product-filter-heading lg-text">Filters</h3>
+          <header className="notes-filter-clear">
+            <h3 className="notes-filter-heading lg-text">Filters</h3>
             <button className="btn reset md-text" onClick={()=>{
               filterDispatch({type:"CLEAR_ALL"})
             }}>Clear</button>
