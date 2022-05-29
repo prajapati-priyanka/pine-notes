@@ -9,8 +9,9 @@ import { getAllNotesHandler } from "../../helpers/utils/getAllNotesHandler";
 
 const Home = () => {
   const [createNoteModalVisible, setCreateNoteModalVisible] = useState(false);
-  const [editNote, setEditNote] = useState(null)
-const {notesState:{notes}, notesDispatch} = useNote()
+  const [editNote, setEditNote] = useState(null);
+  const [sideNavShrinked, setSideNavShrinked] = useState(false);
+const {notesDispatch} = useNote()
   const {authState} = useAuth();
   
   const {filterState : {searchValue}, filterDispatch} = useFilter()
@@ -24,8 +25,8 @@ const {notesState:{notes}, notesDispatch} = useNote()
 
   return (
     <div className="main-container">
-      <SideNav />
-      <main className="main-content">
+      <SideNav sideNavShrinked={sideNavShrinked} setSideNavShrinked={setSideNavShrinked}/>
+      <main className={`main-content ${sideNavShrinked ? "main-content-expand" : ""}`}>
         <section className="search-filter-container">
           <div className="search-container">
             <button type="submit" className="btn-search">
@@ -48,10 +49,6 @@ const {notesState:{notes}, notesDispatch} = useNote()
           >
             CREATE NOTE
           </button>
-        </section>
-
-        <section className="notes-header">
-          <h2 className="notes-heading">Notes</h2>
         </section>
 
         <Notes setCreateNoteModalVisible={setCreateNoteModalVisible} editNote={editNote} setEditNote={setEditNote} />
