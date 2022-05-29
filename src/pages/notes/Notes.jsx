@@ -10,7 +10,7 @@ const Notes = ({editNote, setEditNote ,setCreateNoteModalVisible}) => {
   const [pinnedNotes, setPinnedNotes] = useState([]);
 
   const {
-    notesState: { notes }, notesDipatch
+    notesState: { notes }, notesDispatch
   } = useNote();
 
   const {authState} = useAuth();
@@ -24,7 +24,7 @@ const Notes = ({editNote, setEditNote ,setCreateNoteModalVisible}) => {
   // tempAllNotesHandler.current = getAllNotesHandler
 
   useEffect(() => {
-    getAllNotesHandler(token, notesDipatch) ;
+    getAllNotesHandler(token, notesDispatch) ;
   }, []);
 
   const filteredData = getFilteredData(notes,filterState);
