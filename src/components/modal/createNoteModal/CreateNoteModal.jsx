@@ -59,7 +59,7 @@ const CreateNoteModal = ({
   return (
     <>
       <div className="modal-background">
-        <div className="modal-container">
+        <div className="modal-container create-note-modal">
           <header className="modal-header">
             {editNote ? <h3>Edit Note</h3> : <h3>Create Note</h3>}
             <button
