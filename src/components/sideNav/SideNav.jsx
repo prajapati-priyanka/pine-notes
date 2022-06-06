@@ -11,7 +11,7 @@ import "./SideNav.css";
 import { EditLable } from "../modal/editLabel/EditLabel";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useLabels } from "../../context/labels-context";
 import { convertStringFirstLetterCapital } from "../../helpers/notesHelpers";
 
@@ -26,7 +26,7 @@ const SideNav = ({sideNavShrinked, setSideNavShrinked}) => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     authDispatch({ type: "LOGOUT" });
-    toast("You have been successfully logged out", { icon: "✔️" });
+    toast.success("You have been successfully logged out");
     navigate("/");
   };
 

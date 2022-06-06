@@ -1,5 +1,5 @@
 import { addNoteService } from "../../services/addNoteService";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 export const addNoteHandler = async (e,token, notes, notesDispatch) => {
   e.preventDefault();
@@ -10,7 +10,7 @@ export const addNoteHandler = async (e,token, notes, notesDispatch) => {
       if (response.status === 201) {
         localStorage.setItem("notes", JSON.stringify(response.data.notes));
         notesDispatch({ type: "ADD_NOTE", payload: response.data.notes });
-        toast("New note added succesfully", { icon: "✔️" });
+        toast.success("New note added succesfully");
       } else {
         throw new Error("Can't Process Request");
       }

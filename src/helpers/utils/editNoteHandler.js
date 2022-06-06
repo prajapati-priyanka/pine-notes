@@ -1,5 +1,5 @@
 import { editNoteService } from "../../services/editNoteService";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 export const editNoteHandler = async (e,token, notes, notesDispatch) => {
     e.preventDefault();
@@ -8,7 +8,7 @@ export const editNoteHandler = async (e,token, notes, notesDispatch) => {
     const response = await editNoteService(notes, token);
     if (response.status === 201) {
       notesDispatch({ type: "ADD_NOTE", payload: response.data.notes });
-       toast("Note edited successfully", { icon: "✔️" });
+       toast.success("Note edited successfully");
     } else {
       throw new Error("Can't Process Request");
     }

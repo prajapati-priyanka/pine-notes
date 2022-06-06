@@ -7,7 +7,7 @@ import {
 } from "react-icons/md";
 import { useState } from "react";
 import "./NoteCard.css";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
 import { useTrash, useArchive } from "../../context";
 import { getDateString, getTimeString } from "../../helpers/notesHelpers";
@@ -35,7 +35,7 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes, setEditNote,setCreateNot
     if (newNote === undefined) {
       setIsPinned(!isPinned);
       setPinnedNotes((prevData) => [...prevData, note]);
-      toast("Note Pinned");
+      toast.success("Note Pinned");
     }
   };
 

@@ -3,7 +3,7 @@ import { archiveReducer } from "../reducer/archive-reducer";
 import { useAuth } from "./auth-context";
 import { useNote } from "./notes-context";
 import axios from "axios";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 const archiveInitialState = {
     archive: []
@@ -103,7 +103,7 @@ const ArchiveProvider = ({children}) =>{
           type: "DELETE_FROM_ARCHIVE",
           payload: response.data.archives,
         });
-        toast("Note is deleted from archive", { icon: "✔️" });
+        toast.success("Note is deleted from archive");
       } else {
         throw new Error("Can't process the request");
       }
