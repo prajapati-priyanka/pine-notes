@@ -2,7 +2,8 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Home, Landing, Login, Signup, Notes, Trash, Archive } from "./pages";
 import MockmanEs from "mockman-js";
-import { Toaster } from "react-hot-toast";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -18,9 +19,18 @@ function App() {
         <Route path="/trash" element={<Trash />} />
         <Route path="/archive" element={<Archive />} />
       </Routes>
-      <Toaster
+      <ToastContainer
         position="bottom-right"
-        toastOptions={{ className: "showToast", duration: 3000 }}
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        theme={"colored"}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        className="toaster-container"
       />
     </div>
   );
