@@ -17,7 +17,7 @@ const Filter = () => {
   const priorityChangeHandler = (e) => {
     filterDispatch({
       type: "UPDATE_PRIORITY",
-      payload: { priority: e.target.id },
+      payload: { priority: e.target.id},
     });
   };
 
