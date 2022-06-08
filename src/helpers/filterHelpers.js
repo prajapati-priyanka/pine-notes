@@ -3,19 +3,19 @@ const filterByPriority = (data, filterState) => {
     return data;
   }
   const lowToHighPriority = [];
-  const highToLowPrority = [];
+  const highToLowPriority = [];
 
   for (let note of data) {
     if (note.priority === "low") {
       lowToHighPriority.push(note);
-    }
-    if (note.priority === "high") {
-      highToLowPrority.push(note);
+    } else {
+      highToLowPriority.push(note);
     }
   }
+
   return filterState.priority === "low-to-high"
-    ? lowToHighPriority.concat(highToLowPrority)
-    : highToLowPrority.concat(lowToHighPriority);
+    ? lowToHighPriority.concat(highToLowPriority)
+    : highToLowPriority.concat(lowToHighPriority);
 };
 
 const filterByDate = (data, filterState) => {
