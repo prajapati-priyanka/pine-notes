@@ -1,6 +1,6 @@
-const getDateString = date => date.slice(0,9)
+const getDateString = date => date.slice(0,10).replaceAll("-","/")
 
-const getTimeString = date => date.slice(10,15);
+const getTimeString = date => date.slice(11,16);
 
 const convertStringFirstLetterCapital = (str) =>{
     const remainingChar = str.slice(1);

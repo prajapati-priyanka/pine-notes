@@ -6,6 +6,7 @@ import { ColorPallete } from "../../colorPallete/ColorPallete";
 import { useAuth, useLabels, useNote } from "../../../context";
 import { editNoteHandler } from "../../../helpers/utils/editNoteHandler";
 import { addNoteHandler } from "../../../helpers/utils/addNoteHandler";
+import { formatDate } from "../../../backend/utils/authUtils";
 
 const CreateNoteModal = ({
   setCreateNoteModalVisible,
@@ -28,7 +29,7 @@ const CreateNoteModal = ({
     color: colorList,
     labels: [],
     priority: "",
-    date: new Date().toLocaleString(),
+    date: formatDate()
   };
   const [noteContent, setNoteContent] = useState(initialNotesData);
 

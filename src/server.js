@@ -51,7 +51,7 @@ export function makeServer({ environment = "development" } = {}) {
               color: "",
               labels: ["Home"],
               priority: "high",
-              date: "5/13/2022,12:47:53 AM"
+              date: "2022-05-13T21:42:05+05:30"
             }
           ],
           archives: [],
