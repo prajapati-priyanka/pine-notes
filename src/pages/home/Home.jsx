@@ -37,7 +37,7 @@ const {notesDispatch} = useNote()
               placeholder="Type to search"
               className="input-search"
               value={searchValue}
-              onChange={(e)=>filterDispatch({type:"SET_SEARCH_VALUE", payload: e.target.value})}
+              onChange={(e)=>filterDispatch({type:"SET_SEARCH_VALUE", payload: {searchValue:e.target.value}})}
             />
           </div>
           <Filter />

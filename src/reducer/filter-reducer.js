@@ -4,13 +4,13 @@ export const filterReducer =(state,action)=>{
       case "UPDATE_PRIORITY":
           return{
               ...state,
-            //   labels: [...state.labels],
+              labels: [...state.labels],
               priority: action.payload.priority
           }
       case "SORT_BY_DATE":
           return{
               ...state,
-            //   labels: [...state.labels],
+              labels: [...state.labels],
               sortByDate: action.payload.sortByDate
           }
       
@@ -31,7 +31,7 @@ export const filterReducer =(state,action)=>{
          
           return{
               ...state,
-              searchValue: action.payload
+              searchValue: action.payload.searchValue
           }
 
       case "CLEAR_ALL":
