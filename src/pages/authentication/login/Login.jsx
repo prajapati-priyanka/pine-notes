@@ -5,7 +5,7 @@ import "./Login.css";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../../context/auth-context";
 import { toast } from "react-toastify";
-
+import { loginService } from "../../../services/authServices/loginService";
 
 const Login = () => {
   const { authDispatch } = useAuth();
@@ -23,8 +23,8 @@ const Login = () => {
   };
 
   const guestUser = {
-    email: "adarshbalika@gmail.com",
-    password: "adarshBalika123",
+    email: "coolpriyanka@gmail.com",
+    password: "coolpriyanka123",
   };
 
   const clickHandler = (e) => {
@@ -34,33 +34,32 @@ const Login = () => {
 
   const loginHandler = async (e) => {
     e.preventDefault();
+    if (user.email !== "" && user.password !== "") {
+      try {
+        const response = await loginService(user);
 
-    try {
-      const response = await axios.post("/api/auth/login", {
-        email: user.email,
-        password: user.password,
-      });
+        const { status } = response;
+        const { encodedToken: token, foundUser } = response.data;
 
-      const { status } = response;
-      const { encodedToken: token, foundUser } = response.data;
-
-      if (status === 200) {
-        localStorage.setItem("token", JSON.stringify(token));
-        localStorage.setItem("user", JSON.stringify(foundUser));
-        authDispatch({
-          type: "LOGIN",
-          payload: { user: foundUser, token: token },
-        });
-        navigate(location?.state?.from?.pathname || "/home", {
-          replace: true,
-        });
-       toast.success("You are succesfully logged in")
-      
-      } else {
-        throw new Error("Can't process the request, Please try again later");
+        if (status === 200) {
+          localStorage.setItem("token", JSON.stringify(token));
+          localStorage.setItem("user", JSON.stringify(foundUser));
+          authDispatch({
+            type: "LOGIN",
+            payload: { user: foundUser, token: token },
+          });
+          navigate(location?.state?.from?.pathname || "/home", {
+            replace: true,
+          });
+          toast.success("You are succesfully logged in");
+        } else {
+          throw new Error("Can't process the request, Please try again later");
+        }
+      } catch (err) {
+        console.error(err);
       }
-    } catch (err) {
-      console.error(err);
+    } else {
+      toast.warning("Email and password field cannot be empty");
     }
   };
 
@@ -77,8 +76,7 @@ const Login = () => {
             type="email"
             id="email"
             name="email"
-            required
-            placeholder="tanay@neog.camp"
+            placeholder="priyanka@gmail.com"
             value={user.email}
             onChange={(e) => onChangeHandler(e)}
           />
@@ -112,7 +110,7 @@ const Login = () => {
               Create New Account
               <MdOutlineArrowForwardIos className="forward-icon" />
             </Link>
-          </p> 
+          </p>
         </form>
       </div>
     </main>
