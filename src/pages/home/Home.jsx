@@ -23,7 +23,7 @@ const Home = () => {
 
   useEffect(() => {
     getAllNotesHandler(token, notesDispatch);
-  }, []);
+  }, [token,notesDispatch]);
 
   return (
     <div className="main-container">

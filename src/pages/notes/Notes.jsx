@@ -19,13 +19,10 @@ const Notes = ({editNote, setEditNote ,setCreateNoteModalVisible}) => {
   
   const {filterState} = useFilter();
  
-  // const tempAllNotesHandler = useRef();
-
-  // tempAllNotesHandler.current = getAllNotesHandler
 
   useEffect(() => {
     getAllNotesHandler(token, notesDispatch) ;
-  }, []);
+  }, [token, notesDispatch]);
 
   const filteredData = getFilteredData(notes,filterState);
 
