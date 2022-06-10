@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { Home, Landing, Login, Signup, Trash, Archive } from "./pages";
+import { Home, Landing, Login, Signup, Trash, Archive, NotFound } from "./pages";
 import MockmanEs from "mockman-js";
 import { RequiresAuth } from "./Router/RequiresAuth";
 import { ToastContainer } from "react-toastify";
@@ -18,6 +18,7 @@ function App() {
         <Route path="/home" element={<RequiresAuth><Home /></RequiresAuth>} />
         <Route path="/trash" element={<RequiresAuth><Trash /></RequiresAuth>} />
         <Route path="/archive" element={<RequiresAuth><Archive /></RequiresAuth>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer
         position="bottom-right"
