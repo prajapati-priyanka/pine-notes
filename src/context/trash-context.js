@@ -58,7 +58,7 @@ const TrashProvider = ({ children }) => {
           type: "DELETE_FROM_NOTE",
           payload: response.data.notes,
         });
-        toast("Note is moved to trash", { icon: "✔️" });
+        toast.success("Note is moved to trash");
       } else {
         throw new Error("Can't process the request");
       }
@@ -83,7 +83,7 @@ const TrashProvider = ({ children }) => {
           payload: response.data.trash,
         });
         notesDispatch({ type: "UPDATE_NOTES", payload: response.data.notes });
-        toast("Note restored from trash", { icon: "✔️" });
+        toast.success("Note restored from trash");
       } else {
         throw new Error("Can't process the request");
       }
