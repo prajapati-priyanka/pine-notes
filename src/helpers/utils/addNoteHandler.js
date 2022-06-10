@@ -1,10 +1,9 @@
 import { addNoteService } from "../../services/addNoteService";
 import { toast } from "react-toastify";
 
-export const addNoteHandler = async (e,token, notes, notesDispatch) => {
-  e.preventDefault();
-    
-  try {
+export const addNoteHandler = async (token, notes, notesDispatch) => {
+
+    try {
       const response = await addNoteService(notes, token);
 
       if (response.status === 201) {
