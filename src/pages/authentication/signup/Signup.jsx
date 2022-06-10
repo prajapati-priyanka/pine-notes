@@ -5,12 +5,13 @@ import axios from "axios";
 import "../login/Login.css";
 import "./Signup.css";
 import { useAuth } from "../../../context/auth-context";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Signup = () => {
   const { authDispatch } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -47,8 +48,11 @@ const Signup = () => {
           type: "SIGN_UP",
           payload: { user: createdUser, token: token },
         });
+        navigate(location?.state?.from?.pathname || "/home", {
+          replace: true,
+        });
         toast.success("Your account is successfully made!");
-        navigate("/home");
+        
       }
     } catch (err) {
       console.log(err);
