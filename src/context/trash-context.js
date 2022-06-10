@@ -3,7 +3,7 @@ import { trashReducer } from "../reducer/trash-reducer";
 import { useAuth } from "./auth-context";
 import axios from "axios";
 import { useNote } from "./notes-context";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 
 const trashInitialState = {
@@ -107,7 +107,7 @@ const TrashProvider = ({ children }) => {
           type: "DELETE_FROM_TRASH",
           payload: response.data.trash,
         });
-        toast("Note is deleted from trash", { icon: "✔️" });
+        toast.error("Note is deleted from trash");
       } else {
         throw new Error("Can't process the request");
       }

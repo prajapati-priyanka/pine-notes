@@ -1,22 +1,23 @@
-.card{
+.card {
   position: static;
 }
 .notes-card {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  height: fit-content;
+  height: max-content;
   margin-right: 1rem;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: wrap;
- }
+  min-height: 20rem;
+}
 
-.notes-card .card-header{
+.notes-card .card-header {
   position: static;
 }
 
-.card-right .close-icon{
+.card-right .close-icon {
   cursor: pointer;
 }
 .notes-card .card-text {
@@ -29,15 +30,13 @@
 }
 
 .notes-card .note-footer {
-  margin-top: auto;
+  margin-top: 0.8rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   min-height: 2rem;
 }
-.note-action-btns {
-  display: none;
-}
+
 .note-date {
   font-size: 1.3rem;
   color: var(--gray-color);
@@ -45,29 +44,36 @@
 .action-btn {
   background-color: transparent;
   border: none;
-  color: var(--primary-color);
+  color: var(--gray-color);
   font-size: 1.6rem;
   cursor: pointer;
   margin: auto 0.5rem;
+}
+
+.action-btn:hover{
+  color: var(--primary-color);
 }
 
 .action-btn:nth-child(2) {
   margin: auto 0.5rem;
 }
 
-.notes-card .note-action-btns {
-  display: block;
+.notes-label-priority {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
 }
-.notes-label-priority{
-display: flex;
-gap: 1rem;
-margin: 0.5rem 0;
+.notes-label-name {
+  background-color: var(--warning-color);
+  width: fit-content;
+  padding: 0 0.8rem;
+  border-radius: 0.5rem;
+  justify-self: flex-end;
 }
-
-.notes-features{
-background-color: var(--warning-color);
-width: fit-content;
-padding: 0 0.8rem;
-border-radius: 0.5rem;
-justify-self: flex-end;
+.notes-features {
+  background-color: var(--warning-color);
+  width: fit-content;
+  padding: 0 0.8rem;
+  border-radius: 0.5rem;
+  justify-self: flex-end;
 }

@@ -7,15 +7,13 @@ import {
 } from "react-icons/md";
 import { useState } from "react";
 import "./NoteCard.css";
-import toast from "react-hot-toast";
-import { EditNoteModal } from "../modal/editNoteModal/EditNoteModal";
+import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
-import { useTrash } from "../../context/trash-context";
-import { useArchive } from "../../context/archive-context";
+import { useTrash, useArchive } from "../../context";
+import { getDateString, getTimeString } from "../../helpers/notesHelpers";
 
-const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
+const NoteCard = ({ notes, pinnedNotes, setPinnedNotes, setEditNote,setCreateNoteModalVisible}) => {
   const [isPinned, setIsPinned] = useState(false);
-  const [editNoteVisible, setEditNoteVisible] = useState(false);
   const location = useLocation();
   const {
     moveToTrashHandler,
@@ -29,11 +27,7 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
     deleteFromArchiveHandler
      } = useArchive();
 
-  const { title, content, tags, color, priority } = notes;
-
-  const [label] = tags;
-
-  const date = new Date().toLocaleDateString();
+  const { title, content, labels, color, priority, date } = notes;
 
   const addPinnedNotes = (note) => {
     const newNote = pinnedNotes.find((item) => item._id === note._id);
@@ -41,7 +35,7 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
     if (newNote === undefined) {
       setIsPinned(!isPinned);
       setPinnedNotes((prevData) => [...prevData, note]);
-      toast("Note Pinned");
+      toast.success("Note Pinned");
     }
   };
 
@@ -69,11 +63,15 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
    
   };
  
+  const editNoteHandler = ()=>{
+    setEditNote(notes);
+    setCreateNoteModalVisible(true)
+  }
 
  
 
   return (
-    <>
+    
       <div
         className="card notes-card card-with-dismiss"
         style={{ backgroundColor: color }}
@@ -100,11 +98,14 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
           </div>
         </div>
         <div className="notes-label-priority md-text">
-       {label && <div className="notes-features">{label}</div>}   
-         {priority && <div className="notes-features">{priority}</div>}
+          {labels.map((label,index)=>{
+            return <div key ={index} className="notes-label-name">{label}</div>
+          })}
+          
+         <div className="notes-features">{priority === "low" ? "Low" : "High"}</div>
         </div>
         <div className="note-footer">
-          <p className="note-date">Created on {date} </p>
+          <p className="note-date">{getDateString(date)} | {getTimeString(date)} </p>
           <div className="note-action-btns">
 
         
@@ -120,7 +121,7 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
             {location.pathname === "/home"  ? (<>
               <button
                 className="action-btn"
-                onClick={(e) => setEditNoteVisible(true)}
+                onClick={editNoteHandler}
               >
                 <MdOutlineModeEditOutline />
               </button>
@@ -151,10 +152,7 @@ const NoteCard = ({ notes, pinnedNotes, setPinnedNotes }) => {
           </div>
         </div>
       </div>
-      {editNoteVisible ? (
-        <EditNoteModal note={notes} setEditNoteVisible={setEditNoteVisible} />
-      ) : null}
-    </>
+    
   );
 };
 

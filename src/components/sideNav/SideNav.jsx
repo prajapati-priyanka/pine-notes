@@ -9,23 +9,23 @@ import {
 import { IoMdLogOut } from "react-icons/io";
 import "./SideNav.css";
 import { EditLable } from "../modal/editLabel/EditLabel";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useLabels } from "../../context/labels-context";
+import { convertStringFirstLetterCapital } from "../../helpers/notesHelpers";
 
-const SideNav = () => {
+const SideNav = ({ sideNavShrinked, setSideNavShrinked }) => {
   const { authDispatch } = useAuth();
   const navigate = useNavigate();
   const { labelsState } = useLabels();
   const [labelModalVisible, setLabelModalVisible] = useState(false);
-  const [sideNavShrinked, setSideNavShrinked] = useState(false);
 
   const logoutHandler = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     authDispatch({ type: "LOGOUT" });
-    toast("You have been successfully logged out", { icon: "✔️" });
+    toast.success("You have been successfully logged out");
     navigate("/");
   };
 
@@ -45,9 +45,9 @@ const SideNav = () => {
           <GiHamburgerMenu />
         </button>
 
-        <h3 className="header-title">
+        <Link to="/" className="header-title">
           Pine <span>Notes</span>
-        </h3>
+        </Link>
       </div>
 
       <div className="nav-list">
@@ -61,22 +61,27 @@ const SideNav = () => {
           </span>
           <span className="links-name">Notes</span>
         </NavLink>
-      
-        {labelsState.labels.map((label,index) =>  (
+
+        {labelsState.labels.map((label, index) => (
           <NavLink to="/home" key={index} className="side-nav-link">
             <span>
               <MdLabelOutline className="nav-list-icons" />
             </span>
-            <span className="links-name">{label}</span>
-          </NavLink>)
-        )}
+            <span className="links-name">
+              {convertStringFirstLetterCapital(label)}
+            </span>
+          </NavLink>
+        ))}
 
-         <div className="label-edit side-nav-link" onClick={()=> setLabelModalVisible(true)}>
+        <div
+          className="label-edit side-nav-link"
+          onClick={() => setLabelModalVisible(true)}
+        >
           <span>
             <MdOutlineModeEditOutline className="nav-list-icons" title="Edit" />
           </span>
           <span className="links-name">Edit Labels</span>
-        </div> 
+        </div>
 
         <NavLink
           to="/archive"
@@ -114,7 +119,12 @@ const SideNav = () => {
           <span className="links-name">Logout</span>
         </NavLink>
       </div>
-      {labelModalVisible? <EditLable labelModalVisible={labelModalVisible} setLabelModalVisible={setLabelModalVisible} /> : null}
+      {labelModalVisible ? (
+        <EditLable
+          labelModalVisible={labelModalVisible}
+          setLabelModalVisible={setLabelModalVisible}
+        />
+      ) : null}
     </nav>
   );
 };

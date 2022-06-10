@@ -1,10 +1,11 @@
 .side-nav {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 280px;
-  min-height: 100vh;
+  width: 60px;
+  height: 100vh;
   background-color: var(--side-nav-color);
+
 }
 
 .side-nav .logo-content {
@@ -19,6 +20,12 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+}
+.logo-content .header-title{
+  font-size: 2.4rem;
+  color: var(--black-color);
+  font-weight: var(--semibold-font);
+  padding: 0;
 }
 .logo-content .header-title span{
   color: var(--primary-color);
@@ -58,21 +65,24 @@
 
 .side-nav .nav-list .nav-list-icons {
   font-size: 2rem;
-  /* background-color: red; */
   margin-top: 0.4rem;
 }
 .active , .label-edit{
   color: var(--link-color);
 }
 
-
+.side-nav .header-title,
+.side-nav .nav-list .links-name {
+  display: none;
+}
 /* shrinked */
 
 .side-nav.shrinked {
-  width: 60px;
+  width: 200px;
 }
 
 .side-nav.shrinked .header-title,
 .side-nav.shrinked .nav-list .links-name {
-  display: none;
+  display: block;
 }
+

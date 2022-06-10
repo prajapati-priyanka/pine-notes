@@ -2,23 +2,40 @@ import { FaSearch } from "react-icons/fa";
 import { SideNav, CreateNoteModal, Filter } from "../../components";
 import { useState } from "react";
 import "./Home.css";
-import { useNote } from "../../context/notes-context";
+import { useNote, useAuth, useFilter } from "../../context";
 import { useEffect } from "react";
 import { Notes } from "../notes/Notes";
+import { getAllNotesHandler } from "../../helpers/utils/getAllNotesHandler";
 
 const Home = () => {
   const [createNoteModalVisible, setCreateNoteModalVisible] = useState(false);
+  const [editNote, setEditNote] = useState(null);
+  const [sideNavShrinked, setSideNavShrinked] = useState(false);
+  const { notesDispatch } = useNote();
+  const { authState } = useAuth();
 
-  const { getNotesData } = useNote();
+  const {
+    filterState: { searchValue },
+    filterDispatch,
+  } = useFilter();
+
+  const token = authState.token || localStorage.getItem("token");
 
   useEffect(() => {
-    getNotesData();
-  }, [getNotesData]);
+    getAllNotesHandler(token, notesDispatch);
+  }, [token,notesDispatch]);
 
   return (
     <div className="main-container">
-      <SideNav />
-      <main className="main-content">
+      <SideNav
+        sideNavShrinked={sideNavShrinked}
+        setSideNavShrinked={setSideNavShrinked}
+      />
+      <main
+        className={`main-content ${
+          sideNavShrinked ? "main-content-expand" : ""
+        }`}
+      >
         <section className="search-filter-container">
           <div className="search-container">
             <button type="submit" className="btn-search">
@@ -28,6 +45,13 @@ const Home = () => {
               type="search"
               placeholder="Type to search"
               className="input-search"
+              value={searchValue}
+              onChange={(e) =>
+                filterDispatch({
+                  type: "SET_SEARCH_VALUE",
+                  payload: { searchValue: e.target.value },
+                })
+              }
             />
           </div>
           <Filter />
@@ -41,11 +65,11 @@ const Home = () => {
           </button>
         </section>
 
-        <section className="notes-header">
-          <h2 className="notes-heading">Notes</h2>
-        </section>
-
-        <Notes />
+        <Notes
+          setCreateNoteModalVisible={setCreateNoteModalVisible}
+          editNote={editNote}
+          setEditNote={setEditNote}
+        />
       </main>
 
       {createNoteModalVisible ? (
@@ -53,6 +77,8 @@ const Home = () => {
           <CreateNoteModal
             setCreateNoteModalVisible={setCreateNoteModalVisible}
             createNoteModalVisible={createNoteModalVisible}
+            setEditNote={setEditNote}
+            editNote={editNote}
           />
         </section>
       ) : null}

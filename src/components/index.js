@@ -6,4 +6,3 @@ export { SideNav } from "./sideNav/SideNav";
 export { PinnedCard } from "./pinnedCard/PinnedCard";
 export { ColorPallete } from "./colorPallete/ColorPallete";
 export { CreateNoteModal } from "./modal/createNoteModal/CreateNoteModal";
-export { EditNoteModal } from "./modal/editNoteModal/EditNoteModal";

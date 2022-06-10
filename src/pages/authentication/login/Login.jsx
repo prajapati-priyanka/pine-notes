@@ -2,13 +2,15 @@ import { useState } from "react";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import axios from "axios";
 import "./Login.css";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../../context/auth-context";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
+
 
 const Login = () => {
   const { authDispatch } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [user, setUser] = useState({
     email: "",
@@ -49,8 +51,11 @@ const Login = () => {
           type: "LOGIN",
           payload: { user: foundUser, token: token },
         });
-        toast("You are Succesfully logged in", { icon: "✔️" });
-        navigate("/home");
+        navigate(location?.state?.from?.pathname || "/home", {
+          replace: true,
+        });
+       toast.success("You are succesfully logged in")
+      
       } else {
         throw new Error("Can't process the request, Please try again later");
       }

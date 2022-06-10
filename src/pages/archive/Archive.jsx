@@ -15,7 +15,7 @@ useEffect(()=>{
   return (
     <div className="main-container">
       <SideNav />
-     
+      <main className="main-content">
       {archive.length > 0 ?(
 
           <section className="all-notes-section main-content">
@@ -45,7 +45,7 @@ useEffect(()=>{
          ) 
 
       } 
-     
+     </main>
     </div>
   );
 };

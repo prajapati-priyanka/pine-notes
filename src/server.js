@@ -49,8 +49,9 @@ export function makeServer({ environment = "development" } = {}) {
               title: "Favourite Quote",
               content:  "You have to believe in yourself when no one else does  that makes you a winner right here.",
               color: "",
-              tags: ["home"],
-              priority: "medium",
+              labels: ["Home"],
+              priority: "high",
+              date: "2022-05-13T21:42:05+05:30"
             }
           ],
           archives: [],

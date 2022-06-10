@@ -1,5 +1,6 @@
-.modal-container {
-  width: 50%;
+.create-note-modal{
+  width: 40%;
+  margin: 0 1.2rem;
 }
 
 .modal-header {
@@ -8,7 +9,7 @@
   align-items: center;
 }
 
-.modal-container .add-note-container {
+.create-note-modal .add-note-container {
   margin: auto;
   margin-bottom: 1rem;
   display: flex;
@@ -40,9 +41,10 @@
 }
 .note-select {
   display: flex;
-  justify-content: space-around;
+justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .create-note-btn {
@@ -55,4 +57,38 @@
 .color-pallete-icon {
   margin-left: 3rem;
   cursor: pointer;
+  position: relative;
+}
+
+@media screen and (max-width:1203px) {
+  .create-note-modal{
+    width: 50%;
+  }
+}
+@media screen and (max-width:963px) {
+  .create-note-modal{
+    width: 60%;
+  }
+}
+@media screen and (max-width:805px) {
+  .create-note-modal{
+    width: 70%;
+  }
+}
+@media screen and (max-width:688px) {
+  .create-note-modal{
+    width: 80%;
+  }
+}
+@media screen and (max-width:602px) {
+  .create-note-modal{
+    width: 90%;
+  }
+}
+@media screen and (max-width:535px) {
+  .create-note-modal{
+    width: 100%;
+
+  }
+  
 }

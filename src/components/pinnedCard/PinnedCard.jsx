@@ -1,38 +1,43 @@
 import { BsPinFill, BsTrash } from "react-icons/bs";
 import { MdOutlineModeEditOutline, MdOutlineArchive } from "react-icons/md";
-
-
+import { getDateString, getTimeString } from "../../helpers/notesHelpers";
 import "../noteCard/NoteCard.css";
 
-const PinnedCard = ({notes}) => {
-    const {title, content,tags,color,priority} = notes;
+const PinnedCard = ({ notes }) => {
+  const { title, content, labels, color, priority } = notes;
 
-    const [label] = tags;
-    
-    const date = new Date().toLocaleDateString();
+  const date = new Date().toLocaleDateString();
 
   return (
-    <div className="card notes-card card-with-dismiss" style={{backgroundColor: color}}>
+    <div
+      className="card notes-card card-with-dismiss"
+      style={{ backgroundColor: color }}
+    >
       <div className="card-header">
         <div className="card-left">
           <h5 className="card-title lg-text">{title}</h5>
-          <p className="card-text">
-          {content}
-          </p>
+          <p className="card-text">{content}</p>
         </div>
         <div className="card-right">
           <button className="close-icon">
-           <BsPinFill />
-          </button> 
+            <BsPinFill />
+          </button>
         </div>
       </div>
       <div className="notes-label-priority md-text">
-        <div className="notes-features">{label}</div>
-        <div className="notes-features">{priority}</div>
-        
+        {labels.map((label, index) => {
+          return (
+            <div key={index} className="notes-label-name">
+              {label}
+            </div>
+          );
+        })}
+        <div className="notes-features">
+          {priority === "low" ? "Low" : "High"}
         </div>
+      </div>
       <div className="note-footer">
-        <p className="note-date">Created on {date} </p>
+      <p className="note-date">{getDateString(date)} | {getTimeString(date)} </p>
         <div className="note-action-btns">
           <button className="action-btn">
             <BsTrash />

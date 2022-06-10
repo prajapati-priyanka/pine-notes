@@ -15,10 +15,7 @@
    
 } 
 
-.App .showToast {
-  background-color: var(--green);
-  width: 50rem;
-  font-size: 1.8rem;
-  color: var(--white-color);
-  border-radius: 8px;
+
+.toaster-container{
+  font-size: 1.6rem;
 }
