@@ -7,6 +7,7 @@ import { useAuth, useLabels, useNote } from "../../../context";
 import { editNoteHandler } from "../../../helpers/utils/editNoteHandler";
 import { addNoteHandler } from "../../../helpers/utils/addNoteHandler";
 import { formatDate } from "../../../backend/utils/authUtils";
+import { toast } from "react-toastify";
 
 const CreateNoteModal = ({
   setCreateNoteModalVisible,
@@ -34,23 +35,29 @@ const CreateNoteModal = ({
   const [noteContent, setNoteContent] = useState(initialNotesData);
 
   const checkInputs = () => {
-    if (noteContent.title !== "" && noteContent.content !== "") {
+    if (noteContent.title === "") {
+      toast.warning("Enter the Title");
+    } else if (noteContent.content === "") {
+      toast.warning("Enter the Content");
+    } else {
       return true;
     }
-    return false;
   };
 
   const createNoteHandler = (e) => {
+    e.preventDefault();
     const newNote = { ...noteContent };
 
     if (checkInputs()) {
       editNote
-        ? editNoteHandler(e, token, newNote, notesDispatch)
-        : addNoteHandler(e, token, newNote, notesDispatch);
+        ? editNoteHandler(token, newNote, notesDispatch)
+        : addNoteHandler(token, newNote, notesDispatch);
+
+        setEditNote(null);
+        setIsOpen(false);
+        setCreateNoteModalVisible(false);
     }
-    setEditNote(null);
-    setIsOpen(false);
-    setCreateNoteModalVisible(false);
+ 
   };
 
   const expandColorPallete = () => {

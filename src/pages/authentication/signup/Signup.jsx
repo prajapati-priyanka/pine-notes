@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import axios from "axios";
 import "../login/Login.css";
 import "./Signup.css";
 import { useAuth } from "../../../context/auth-context";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
+import { signUpService } from "../../../services/authServices/signupService";
 
 const Signup = () => {
   const { authDispatch } = useAuth();
@@ -36,26 +36,39 @@ const Signup = () => {
     }
   };
 
+  const checkInputFields = () => {
+    return (
+      userData.firstName !== "" &&
+      userData.lastName !== "" &&
+      userData.email !== "" &&
+      userData.password !== "" &&
+      userData.confirmPass !== ""
+    );
+  };
+
   const signupHandler = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post("/api/auth/signup", userData);
-      const { encodedToken: token, createdUser } = response.data;
-      if (response.status === 201) {
-        localStorage.setItem("token", JSON.stringify(token));
-        localStorage.setItem("user", JSON.stringify("createdUser"));
-        authDispatch({
-          type: "SIGN_UP",
-          payload: { user: createdUser, token: token },
-        });
-        navigate(location?.state?.from?.pathname || "/home", {
-          replace: true,
-        });
-        toast.success("Your account is successfully made!");
-        
+    if (checkInputFields()) {
+      try {
+        const response = await signUpService(userData);
+        const { encodedToken: token, createdUser } = response.data;
+        if (response.status === 201) {
+          localStorage.setItem("token", JSON.stringify(token));
+          localStorage.setItem("user", JSON.stringify("createdUser"));
+          authDispatch({
+            type: "SIGN_UP",
+            payload: { user: createdUser, token: token },
+          });
+          navigate(location?.state?.from?.pathname || "/home", {
+            replace: true,
+          });
+          toast.success("Your account is successfully made!");
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
+    } else {
+      toast.warning("All the fields need to be entered");
     }
   };
   return (
@@ -72,7 +85,6 @@ const Signup = () => {
               type="text"
               id="fname"
               placeholder="First Name"
-              required
               name="firstName"
               value={userData.firstName}
               onChange={(e) => onChangeHandler(e)}
@@ -82,7 +94,6 @@ const Signup = () => {
               type="text"
               id="lname"
               placeholder="Last Name"
-              required
               name="lastName"
               value={userData.lastName}
               onChange={(e) => onChangeHandler(e)}
@@ -91,8 +102,7 @@ const Signup = () => {
             <input
               type="email"
               id="email"
-              placeholder="tanaypratap@neog.camp"
-              required
+              placeholder="priyanka@gmail.com"
               name="email"
               value={userData.email}
               onChange={(e) => onChangeHandler(e)}
@@ -103,7 +113,6 @@ const Signup = () => {
                 type={showPassword ? "type" : "password"}
                 id="pass"
                 placeholder="*******"
-                required
                 name="password"
                 value={userData.password}
                 onChange={(e) => onChangeHandler(e)}
@@ -121,7 +130,6 @@ const Signup = () => {
                 type={showConfirmPassword ? "type" : "password"}
                 id="confirm-pass"
                 placeholder="*******"
-                required
                 name="confirmPass"
                 value={userData.confirmPass}
                 onChange={(e) => {

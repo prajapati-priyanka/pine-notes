@@ -1,8 +1,7 @@
 import { editNoteService } from "../../services/editNoteService";
 import { toast } from "react-toastify";
 
-export const editNoteHandler = async (e,token, notes, notesDispatch) => {
-    e.preventDefault();
+export const editNoteHandler = async (token, notes, notesDispatch) => {
 
   try {
     const response = await editNoteService(notes, token);

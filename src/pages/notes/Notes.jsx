@@ -1,30 +1,28 @@
 import { NoteCard, PinnedCard } from "../../components";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useNote, useFilter, useAuth } from "../../context";
-import { getFilteredData} from "../../helpers/filterHelpers";
+import { getFilteredData } from "../../helpers/filterHelpers";
 import { getAllNotesHandler } from "../../helpers/utils/getAllNotesHandler";
 
-
-const Notes = ({editNote, setEditNote ,setCreateNoteModalVisible}) => {
-  
+const Notes = ({ editNote, setEditNote, setCreateNoteModalVisible }) => {
   const [pinnedNotes, setPinnedNotes] = useState([]);
 
   const {
-    notesState: { notes }, notesDispatch
+    notesState: { notes },
+    notesDispatch,
   } = useNote();
 
-  const {authState} = useAuth();
+  const { authState } = useAuth();
 
-  const token = authState.token || localStorage.getItem("token")
-  
-  const {filterState} = useFilter();
- 
+  const token = authState.token || localStorage.getItem("token");
+
+  const { filterState } = useFilter();
 
   useEffect(() => {
-    getAllNotesHandler(token, notesDispatch) ;
+    getAllNotesHandler(token, notesDispatch);
   }, [token, notesDispatch]);
 
-  const filteredData = getFilteredData(notes,filterState);
+  const filteredData = getFilteredData(notes, filterState);
 
   return (
     <>
@@ -45,16 +43,17 @@ const Notes = ({editNote, setEditNote ,setCreateNoteModalVisible}) => {
           ))}
         </div>
       </section>
+      {pinnedNotes.length > 0 ? (
+        <section className="all-notes-section">
+          <h4 className="all-notes-heading">Pinned Notes</h4>
 
-      <section className="all-notes-section">
-        <h4 className="all-notes-heading">Pinned Notes</h4>
-
-        <div className="all-notes-container">
-          {pinnedNotes.map((note) => (
-            <PinnedCard key={note._id} notes={note} />
-          ))}
-        </div>
-      </section>
+          <div className="all-notes-container">
+            {pinnedNotes.map((note) => (
+              <PinnedCard key={note._id} notes={note} />
+            ))}
+          </div>
+        </section>
+      ) : null}
     </>
   );
 };
