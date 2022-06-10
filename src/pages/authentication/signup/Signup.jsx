@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import axios from "axios";
 import "../login/Login.css";
 import "./Signup.css";
 import { useAuth } from "../../../context/auth-context";
