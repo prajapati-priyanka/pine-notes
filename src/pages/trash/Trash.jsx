@@ -13,10 +13,12 @@ useEffect(()=>{
   return (
     <div className="main-container">
       <SideNav />
+
+      <main className="main-content">
       {
         trash.length > 0 ?(
 
-          <section className="all-notes-section main-content">
+          <section className="all-notes-section">
         <h4 className="all-notes-heading">Trashed Notes</h4>
 
         <div className="all-notes-container">
@@ -42,7 +44,7 @@ useEffect(()=>{
         )
 
       }
-     
+     </main>
     </div>
   );
 };

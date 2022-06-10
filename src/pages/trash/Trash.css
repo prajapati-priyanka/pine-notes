@@ -1,11 +1,9 @@
 .empty-trash-container {
-  width: calc(100vw - 270px);
-  min-height: 100vh;
-  margin: 0;
+  width: 100%;
 }
 
 .empty-trash-content {
-  margin: 0 auto;
+  margin-top: 18rem;
    height: 100%;
   padding: 1rem;
   display: flex;
